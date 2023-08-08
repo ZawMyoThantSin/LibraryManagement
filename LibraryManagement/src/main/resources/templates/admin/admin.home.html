@@ -1,34 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="master::header">
     <meta charset="UTF-8">
-    <title>Title</title>
+     <title>Title</title>
 </head>
-<body>
+<body class="bg-secondary text-white">
+<div th:replace="master::navbar"></div>
 
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Root</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
+<button class="btn btn-primary">Create Category</button>
+<button class="btn btn-primary">View Users</button>
 
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-sm-2" type="search" placeholder="Search Book">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">By Author Name</button>
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">By Book Name</button>
+<div class="bg-dark text-white">
+<table class="table table-hover">
+    <h1>Show Our Lists</h1>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Password</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role ID</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Updated Date</th>
 
-            </form>
-        </div>
-    </div>
-</nav>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td scope="row">1</td>
+        <td>Aung</td>
+        <td>111</td>
+        <td>1@gmail.com</td>
+        <td>User</td>
+        <td>1/2/2023</td>
+        <td>2/2/2023</td>
+    </tr>
+    <tr>
+        <td scope="row">2</td>
+        <td>Kyaw</td>
+        <td>222</td>
+        <td>2@gmail.com</td>
+        <td>Admin</td>
+        <td>4/2/2023</td>
+        <td>6/2/2023</td>
+    </tr>
+    <tr>
+        <td scope="row">3</td>
+        <td>Mg</td>
+        <td>333</td>
+        <td>3@gmail.com</td>
+        <td>User</td>
+        <td>8/2/2023</td>
+        <td>9/2/2023</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div th:replace="master::footer"></div>
 </body>
 </html>
