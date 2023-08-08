@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="master::header">
     <meta charset="UTF-8">
-     <title>Title</title>
+     <title th:text="${title}"></title>
 </head>
 <body class="bg-secondary text-white">
 <div th:replace="master::navbar"></div>
@@ -10,10 +10,9 @@
 <button class="btn btn-primary">Create Category</button>
 <button class="btn btn-primary">View Users</button>
 
-<div class="bg-dark text-white">
-<table class="table table-hover">
-    <h1>Show Our Lists</h1>
-    <thead>
+<div class="bg-white text-white">
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
     <tr>
         <th scope="col">Id</th>
         <th scope="col">User Name</th>

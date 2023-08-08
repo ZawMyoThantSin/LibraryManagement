@@ -1,17 +1,20 @@
 package com.jwd39.LibraryManagement.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
-    @GetMapping("/login/user")
-    public String userLogin(){
+    @GetMapping("/user/login")
+    public String userLogin(Model model){
+        model.addAttribute("title","Login");
         return "user/userLogin";
     }
 
-    @GetMapping("/create/user")
-    public String createuser(){
+    @GetMapping("/user/create")
+    public String userCreate(Model model){
+        model.addAttribute("title","User Create");
         return "user/createUser";
     }
 
