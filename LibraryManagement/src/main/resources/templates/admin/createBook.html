@@ -6,14 +6,14 @@
 </head>
 <body class="bg-dark text-white">
 
-<form class="container col-md-6 offset-md-3 mt-3">
+<form class="container col-md-6 offset-md-3 mt-3 border border-primary">
     <fieldset>
-        <legend>Create Category</legend>
+        <legend class="text-center"><u>Create Category</u></legend>
         <div class="form-group">
-            <label for="id" class="col-sm-2 col-form-label mt-4">Book ID</label>
-            <div class="col-sm-10">
-                <input type="text" readonly="" class="form-control" id="id" name="id" placeholder="Book ID">
-            </div>
+            <label for="id" class="col-form-label mt-4">Book ID</label>
+
+            <input type="text" readonly="" class="form-control" id="id" name="id" placeholder="Book ID">
+
         </div>
 
         <div class="form-group">
@@ -53,10 +53,9 @@
             <input class="form-control" type="file" id="cover">
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-success">Create</button>
     </fieldset>
 </form>
-
 <div th:replace="master::footer"></div>
 
 </body>
