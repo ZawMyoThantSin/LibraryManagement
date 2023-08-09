@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="master::header">
     <meta charset="UTF-8">
-     <title>Admin</title>
+     <title th:text="${title}"></title>
 </head>
 <body class=" bg-dark text-white">
 <div th:replace="master::navbar"></div>

@@ -16,17 +16,14 @@
 }
 
 
-.login-page {
-    width: 360px;
-    padding: 8% 0 0;
-    margin: auto;
-}
-
 .login-page .form .login{
     margin-top: -31px;
     margin-bottom: 26px;
 }
 .login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
 
     background: rgba(129, 109, 109, 0.3);
     border-radius: 16px;
@@ -78,10 +75,11 @@ input[type="password"] {
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
+
 .form .message {
     margin: 15px;
     color: #fff;
