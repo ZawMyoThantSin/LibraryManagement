@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master::header">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="master::navbar"></div>
+
+<!--side var-->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">All</a>
+    <a href="#">Latest Books List</a>
+    <a href="#">Most Rated Books List</a>
+    <a href="#">Favourite</a>
+    <a href="#">Downloaded Books List</a>
+    <br>
+    <br>
+    <h2 class="text-white"><u>Genres</u></h2>
+    <a href="#">Business</a>
+    <a href="#">Comedy</a>
+    <a href="#">Education</a>
+    <a href="#">Ghost</a>
+    <a href="#">Politic</a>
+    <a href="#">History</a>
+    <a href="#">Health</a>
+    <a href="#">Travel</a>
+    <a href="#">Story</a>
+    <a href="#">Motivation</a>
+
+</div>
+
+<!--home page-->
+<div class="container-fluid mt-5">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <div class="container mt-3 d-flex">
+        <div width="50%" class="float-left">
+            <p class="display-3 text-monospace line-1 anim-typewriter">There is no <strong>Friend</strong> </br>
+                as <strong>Loyal</strong> as a
+                <strong>Book.</strong></p>
+            <p class="h5">-ERNEST HEMINGWAY</p>
+            <button class="btn btn-outline-primary btn-lg mt-3">Search Here Now</button>
+        </div>
+        <div width="50%" class="float-right">
+            <img src="/need/books-png.png" class="rounded float-right" alt="..." width="350px" height="350px">
+        </div>
+    </div>
+</div>
+
+<hr color="gray" class="mt-5">
+
+<!--card image-->
+<div class="card-deck container">
+    <div class="card">
+        <img src="/need/orange1jpg.jpg" class="card-img-top" alt="...">
+        <div class="card-body text-dark">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, perspiciatis. Ipsa consectetur est enim voluptatem odio voluptates quia in illo quibusdam ex laudantium deleniti, sequi culpa nobis placeat asperiores. Earum?
+                <a href="#">see more</a>
+            </p>
+            <a href="#" type="button" class="btn btn-secondary">Details</a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+        <img src="/need/orange2.jpg" class="card-img-top" alt="...">
+        <div class="card-body text-dark">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text text-dark">This card has supporting text below as a natural lead-in to additional content.
+                <a href="#">see more</a>
+            </p>
+            <a href="#" type="button" class="btn btn-secondary">Details</a>
+
+
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body text-dark">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                <a href="#">see more</a>
+            </p>
+            <a href="#" type="button" class="btn btn-secondary">Details</a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<div th:replace="master::footer"></div>
+</body>
+</html>
