@@ -18,4 +18,9 @@ public class UserController {
         return "user/createUser";
     }
 
+    @GetMapping("/user/view")
+    public String userViewScreen(){
+        return "user/userView";
+    }
+
 }
