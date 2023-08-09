@@ -11,7 +11,7 @@ public class AdminController {
         model.addAttribute("title","Admin Home");
         return"admin/admin.home";
     }
-    @GetMapping("/create/book")
+    @GetMapping("/book/create")
     public String createBook(){
         return "admin/createBook";
 
