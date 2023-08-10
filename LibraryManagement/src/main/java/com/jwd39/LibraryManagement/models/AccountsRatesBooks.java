@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 public class AccountsRatesBooks {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_id,book_id,rating;
     private Date created_date,updated_date;
 

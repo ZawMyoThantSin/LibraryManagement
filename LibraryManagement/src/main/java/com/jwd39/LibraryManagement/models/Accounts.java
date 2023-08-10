@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 public class Accounts {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id,role_id;
     private String username,password,email;
     private Date created_date,updated_date;

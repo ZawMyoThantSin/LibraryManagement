@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Genres {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String genre_name;

@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 public class Books {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id,genre_id,author_id;
     private String book_name,cover_image_name,is_delete;
     private Date create_date,updated_date;
@@ -51,6 +51,31 @@ public class Books {
         this.is_delete = is_delete;
         this.create_date = create_date;
         this.updated_date = updated_date;
+    }
+
+    public Books(int id, int genre_id, int author_id, String book_name, String cover_image_name, Date create_date, Date updated_date) {
+        this.id = id;
+        this.genre_id = genre_id;
+        this.author_id = author_id;
+        this.book_name = book_name;
+        this.cover_image_name = cover_image_name;
+        this.create_date = create_date;
+        this.updated_date = updated_date;
+    }
+
+    public Books(int id, int genre_id, int author_id, String book_name, String cover_image_name) {
+        this.id = id;
+        this.genre_id = genre_id;
+        this.author_id = author_id;
+        this.book_name = book_name;
+        this.cover_image_name = cover_image_name;
+    }
+
+    public Books(int genre_id, int author_id, String book_name, String cover_image_name) {
+        this.genre_id = genre_id;
+        this.author_id = author_id;
+        this.book_name = book_name;
+        this.cover_image_name = cover_image_name;
     }
 
     public int getId() {
