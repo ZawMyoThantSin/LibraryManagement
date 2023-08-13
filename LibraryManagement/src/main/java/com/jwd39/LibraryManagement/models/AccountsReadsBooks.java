@@ -1,16 +1,9 @@
 package com.jwd39.LibraryManagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import java.util.Date;
 
-@Entity
 public class AccountsReadsBooks {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int account_id,book_id;
     private Date created_date,updated_date;
 

@@ -1,34 +1,27 @@
 package com.jwd39.LibraryManagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import java.util.Date;
 
-@Entity
 public class AccountsRatesBooks {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int account_id,book_id,rating;
+
+    private int account_id,book_id,rate;
     private Date created_date,updated_date;
 
     public AccountsRatesBooks() {
     }
 
-    public AccountsRatesBooks(int account_id, int book_id, int rating, Date created_date, Date updated_date) {
+    public AccountsRatesBooks(int account_id, int book_id, int rate, Date created_date, Date updated_date) {
         this.account_id = account_id;
         this.book_id = book_id;
-        this.rating = rating;
+        this.rate = rate;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
 
-    public AccountsRatesBooks(int account_id, int book_id, int rating) {
+    public AccountsRatesBooks(int account_id, int book_id, int rate) {
         this.account_id = account_id;
         this.book_id = book_id;
-        this.rating = rating;
+        this.rate = rate;
     }
 
     public int getAccount_id() {
@@ -47,12 +40,12 @@ public class AccountsRatesBooks {
         this.book_id = book_id;
     }
 
-    public int getRating() {
-        return rating;
+    public int getRate() {
+        return rate;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     public Date getCreated_date() {
