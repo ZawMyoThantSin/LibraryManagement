@@ -29,6 +29,9 @@ public class DBHelper {
 
         return instance;
     }
+    public static void closeConnection() throws SQLException {
+        con.close();
+    }
 
     public static Connection getCon(){
         return con;
