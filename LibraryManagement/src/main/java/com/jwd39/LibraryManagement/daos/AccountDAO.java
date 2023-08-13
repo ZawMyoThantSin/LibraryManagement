@@ -51,7 +51,7 @@ public class AccountDAO {
 
         con = DBHelper.getInstance().getCon();
         int status = 0;
-        String query = "INSERT INTO accounts VALUES ?,?,?,?,CURDATE(),CURDATE();";
+        String query = "INSERT INTO accounts (usrname,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setNString(1, acc.getUsername());
         pstt.setNString(2, acc.getPassword());

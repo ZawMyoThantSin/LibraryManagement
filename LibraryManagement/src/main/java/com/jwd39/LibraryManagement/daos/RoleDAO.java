@@ -19,7 +19,7 @@ public class RoleDAO {
     //------------------------------------------------------------------------------------------------------------------
     public int roleCreate(Roles role) throws SQLException {
         int status = 0;
-        String query = "INSERT INTO roles VALUES ?,CURDATE(),CURDATE();";
+        String query = "INSERT INTO roles (rolename,created_date,updated_date) VALUES (?,CURDATE(),CURDATE()_;";
         con = DBHelper.getInstance().getCon();
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setNString(1, role.getRolename());
