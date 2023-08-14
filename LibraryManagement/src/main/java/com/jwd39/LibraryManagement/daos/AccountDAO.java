@@ -67,7 +67,6 @@ public class AccountDAO {
 
         }
 
-        DBHelper.getInstance().closeConnection();
         return this.user;
     }
 
@@ -86,7 +85,6 @@ public class AccountDAO {
 
         status = pstt.executeUpdate();
 
-        DBHelper.getInstance().closeConnection();
 
         return status;
     }
@@ -111,7 +109,6 @@ public class AccountDAO {
             );
             accs.add(user);
         }
-        DBHelper.getInstance().closeConnection();
         return accs;
     }
 
@@ -134,7 +131,6 @@ public class AccountDAO {
                     rs.getDate("updated_date")
             );
         }
-        DBHelper.getInstance().closeConnection();
         return user;
     }
 
@@ -151,7 +147,6 @@ public class AccountDAO {
         pstt.setInt(4,acc.getId());
         status = pstt.executeUpdate();
 
-        DBHelper.getInstance().getCon();
         return status;
     }
 
@@ -165,7 +160,6 @@ public class AccountDAO {
         pstt.setInt(1,id);
         status = pstt.executeUpdate();
 
-        DBHelper.getInstance().closeConnection();
         return status;
     }
 }

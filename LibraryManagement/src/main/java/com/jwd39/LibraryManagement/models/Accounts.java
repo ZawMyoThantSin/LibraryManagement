@@ -43,6 +43,11 @@ public class Accounts {
         this.email = email;
     }
 
+    public Accounts(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
