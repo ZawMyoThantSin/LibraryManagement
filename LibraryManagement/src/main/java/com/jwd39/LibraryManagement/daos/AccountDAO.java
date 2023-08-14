@@ -17,14 +17,40 @@ public class AccountDAO {
 
     //Account Login
     //---------------------------------------------------------------------------------------------------------------
-    public Accounts acLogIn(Accounts acc) throws SQLException {
+    public Accounts userValidate(String username, String password) {
+        Connection connection = DBHelper.getInstance().getCon();
+        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
+        try (
+                PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Accounts user = new Accounts();
+                    user.setId(rs.getInt("id"));
+                    user.setRole_id(rs.getInt("role_id"));
+                    user.setUsername(rs.getString("usrname"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setCreated_date(rs.getDate("created_date"));
+                    user.setUpdated_date(rs.getDate("updated_date"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?;";
+    public Accounts acLogIn(String userName,String password)
+            throws SQLException {
+        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
         con = DBHelper.getInstance().getCon();
         try {
             PreparedStatement pstt = con.prepareStatement(query);
-            pstt.setString(1, acc.getUsername());
-            pstt.setString(2, acc.getPassword());
+            pstt.setString(1,userName);
+            pstt.setString(2, password);
             ResultSet rs = pstt.executeQuery();
             while (rs.next()) {
                 this.user = new Accounts(
