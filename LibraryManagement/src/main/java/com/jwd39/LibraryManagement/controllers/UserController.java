@@ -2,6 +2,7 @@ package com.jwd39.LibraryManagement.controllers;
 
 import com.jwd39.LibraryManagement.daos.AccountDAO;
 import com.jwd39.LibraryManagement.daos.RoleDAO;
+import com.jwd39.LibraryManagement.helpers.MD5Helper;
 import com.jwd39.LibraryManagement.models.Accounts;
 import com.jwd39.LibraryManagement.models.Roles;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,8 @@ public class UserController {
     //------------------------------------------------------------------------------------------------------------------
     @PostMapping("/user/login")
     public String postLogIn(@RequestParam String username, String password) {
-        Accounts user = new Accounts(username, password);
+        String pswd = MD5Helper.encrypt(password);
+        Accounts user = new Accounts(username, pswd);
         AccountDAO dao = new AccountDAO();
         try {
             user = dao.acLogIn(user);
