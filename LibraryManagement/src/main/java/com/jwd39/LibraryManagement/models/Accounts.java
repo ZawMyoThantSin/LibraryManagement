@@ -22,12 +22,11 @@ public class Accounts {
         this.updated_date = updated_date;
     }
 
-    public Accounts(String username, String password, String email, Date created_date, Date updated_date) {
+    public Accounts(String username, String password, String email,int role_id) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.created_date = created_date;
-        this.updated_date = updated_date;
+        this.role_id= role_id;
     }
 
     public Accounts(int id, int role_id, String username, String password, String email) {
@@ -42,6 +41,11 @@ public class Accounts {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public Accounts(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -98,5 +102,18 @@ public class Accounts {
 
     public void setUpdated_date(Date updated_date) {
         this.updated_date = updated_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Accounts{" +
+                "id=" + id +
+                ", role_id=" + role_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", created_date=" + created_date +
+                ", updated_date=" + updated_date +
+                '}';
     }
 }

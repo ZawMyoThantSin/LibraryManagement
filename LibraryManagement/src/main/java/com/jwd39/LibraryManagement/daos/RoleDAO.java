@@ -19,7 +19,7 @@ public class RoleDAO {
     //------------------------------------------------------------------------------------------------------------------
     public int roleCreate(Roles role) throws SQLException {
         int status = 0;
-        String query = "INSERT INTO roles VALUES ?,CURDATE(),CURDATE();";
+        String query = "INSERT INTO roles (rolename,created_date,updated_date) VALUES (?,CURDATE(),CURDATE()_;";
         con = DBHelper.getInstance().getCon();
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setNString(1, role.getRolename());
@@ -46,7 +46,6 @@ public class RoleDAO {
             );
             roles.add(role);
         }
-        DBHelper.getInstance().closeConnection();
         return roles;
     }
 
@@ -65,7 +64,6 @@ public class RoleDAO {
                     rs.getDate("updated_date")
             );
         }
-        DBHelper.getInstance().getCon();
         return role;
     }
 
@@ -79,7 +77,6 @@ public class RoleDAO {
         pstt.setNString(1,role.getRolename());
         pstt.setInt(2,role.getRole_id());
         status = pstt.executeUpdate();
-        DBHelper.getInstance().closeConnection();
         return status;
     }
 
@@ -93,7 +90,6 @@ public class RoleDAO {
         pstt.setInt(1,id);
         status = pstt.executeUpdate();
 
-        DBHelper.getInstance().closeConnection();
         return status;
     }
 }
