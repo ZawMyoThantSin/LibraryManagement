@@ -3,16 +3,16 @@ package com.jwd39.LibraryManagement.models;
 import java.util.Date;
 
 
-public class Accounts {
+public class Account {
 
     private int id,role_id;
     private String username,password,email;
     private Date created_date,updated_date;
 
-    public Accounts() {
+    public Account() {
     }
 
-    public Accounts(int id, int role_id, String username, String password, String email, Date created_date, Date updated_date) {
+    public Account(int id, int role_id, String username, String password, String email, Date created_date, Date updated_date) {
         this.id = id;
         this.role_id = role_id;
         this.username = username;
@@ -22,14 +22,14 @@ public class Accounts {
         this.updated_date = updated_date;
     }
 
-    public Accounts(String username, String password, String email,int role_id) {
+    public Account(String username, String password, String email, int role_id) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role_id= role_id;
     }
 
-    public Accounts(int id, int role_id, String username, String password, String email) {
+    public Account(int id, int role_id, String username, String password, String email) {
         this.id = id;
         this.role_id = role_id;
         this.username = username;
@@ -37,13 +37,13 @@ public class Accounts {
         this.email = email;
     }
 
-    public Accounts(String username, String password, String email) {
+    public Account(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public Accounts(String username, String password) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -106,7 +106,7 @@ public class Accounts {
 
     @Override
     public String toString() {
-        return "Accounts{" +
+        return "Account{" +
                 "id=" + id +
                 ", role_id=" + role_id +
                 ", username='" + username + '\'' +
