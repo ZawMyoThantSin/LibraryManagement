@@ -7,7 +7,7 @@
 <body class=" bg-dark text-white">
 <div th:replace="master::navbar"></div>
 
-<div class="container-fluid mt-4 vh-100">
+<div class="container-fluid mt-2 vh-100">
     <div class="row">
         <div class="col-md-2  border-right border-primary vh-100">
             <div  class="list-group bg-secondary mt-2">
@@ -15,6 +15,16 @@
                 <a class="bg-secondary text-white list-group-item list-group-item-action" href="#list-item-1">Our Categories List</a>
                 <a class="bg-secondary text-white list-group-item list-group-item-action" href="#list-item-2">Show Our Users</a>
                 <a class="bg-secondary text-white list-group-item list-group-item-action" href="/book/create">Add Book</a>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Genres
+                    </a>
+
+                    <div class="dropdown-menu" th:each="genre : ${genres}">
+                        <a class="dropdown-item" href="#" name="genreName" th:text="${genre.genre_name}"></a>
+                    </div>
+                    <a href="" class="btn btn-primary">Add more</a>
+                </div>
             </div>
         </div>
         <div class="col-md-9 center  m-auto ">

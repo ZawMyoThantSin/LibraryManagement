@@ -19,7 +19,7 @@ public class AccountDAO {
     //---------------------------------------------------------------------------------------------------------------
     public Accounts acLogIn(Accounts acc) throws SQLException {
 
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?;";
+        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?;";
         con = DBHelper.getInstance().getCon();
         try {
             PreparedStatement pstt = con.prepareStatement(query);
@@ -30,7 +30,7 @@ public class AccountDAO {
                 this.user = new Accounts(
                         rs.getInt("id"),
                         rs.getInt("role_id"),
-                        rs.getNString("usrname"),
+                        rs.getNString("username"),
                         rs.getNString("password"),
                         rs.getNString("email"),
                         rs.getDate("created_date"),
@@ -77,7 +77,7 @@ public class AccountDAO {
             user = new Accounts(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -101,7 +101,7 @@ public class AccountDAO {
             user = new Accounts(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
