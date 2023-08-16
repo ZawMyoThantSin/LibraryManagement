@@ -10,7 +10,7 @@ public class Test {
         String pass = MD5Helper.encrypt("123hello");
         System.out.println(pass);
         AccountDAO dao = new AccountDAO();
-        Account user = dao.acLogIn("Htet","H222");
+        Account user = dao.acLogIn("test2","123");
         System.out.println(user);
     }
 }
