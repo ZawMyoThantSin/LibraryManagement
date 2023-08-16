@@ -2,6 +2,7 @@ package com.jwd39.LibraryManagement.daos;
 
 import com.jwd39.LibraryManagement.helpers.DBHelper;
 import com.jwd39.LibraryManagement.models.Genres;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class GenresDAO {
 
     private Connection con;
@@ -18,9 +20,9 @@ public class GenresDAO {
     public int genresCreate(Genres genres){
         int status=0;
         con = DBHelper.getInstance().getCon();
-        String query="INSERT INTO genres (genre_name) VALUE (?)";
+        String query="INSERT INTO library.genres (genre_name) VALUE (?)";
         try {
-            PreparedStatement ps=con.prepareStatement("query");
+            PreparedStatement ps=con.prepareStatement(query);
             ps.setString(1,genres.getGenre_name());
             status=ps.executeUpdate();
         } catch (SQLException e) {
@@ -34,9 +36,9 @@ public class GenresDAO {
         List<Genres> genres=new ArrayList<>();
         ResultSet rs;
         con=DBHelper.getInstance().getCon();
-        String query="SELECT * FROM genres";
+        String query="SELECT * FROM library.genres";
         try {
-            PreparedStatement ps=con.prepareStatement("query");
+            PreparedStatement ps=con.prepareStatement(query);
             rs=ps.executeQuery();
             while (rs.next()){
                 Genres genre=new Genres();

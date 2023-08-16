@@ -1,7 +1,7 @@
 package com.jwd39.LibraryManagement.daos;
 
 import com.jwd39.LibraryManagement.helpers.DBHelper;
-import com.jwd39.LibraryManagement.models.Accounts;
+import com.jwd39.LibraryManagement.models.Account;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,23 +13,23 @@ import java.util.List;
 public class AccountDAO {
 
     private Connection con;
-    private Accounts user;
+    private Account user;
 
     //Account Login
     //---------------------------------------------------------------------------------------------------------------
-    public Accounts userValidate(String username, String password) {
+    public Account userValidate(String username, String password) {
         Connection connection = DBHelper.getInstance().getCon();
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
         try (
                 PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, username);
             ps.setString(2, password);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    Accounts user = new Accounts();
+                    Account user = new Account();
                     user.setId(rs.getInt("id"));
                     user.setRole_id(rs.getInt("role_id"));
-                    user.setUsername(rs.getString("usrname"));
+                    user.setUsername(rs.getString("username"));
                     user.setEmail(rs.getString("email"));
                     user.setPassword(rs.getString("password"));
                     user.setCreated_date(rs.getDate("created_date"));
@@ -43,9 +43,9 @@ public class AccountDAO {
         return null;
     }
 
-    public Accounts acLogIn(String userName,String password)
+    public Account acLogIn(String userName,String password)
             throws SQLException {
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
         con = DBHelper.getInstance().getCon();
         try {
             PreparedStatement pstt = con.prepareStatement(query);
@@ -53,10 +53,10 @@ public class AccountDAO {
             pstt.setString(2, password);
             ResultSet rs = pstt.executeQuery();
             while (rs.next()) {
-                this.user = new Accounts(
+                this.user = new Account(
                         rs.getInt("id"),
                         rs.getInt("role_id"),
-                        rs.getNString("usrname"),
+                        rs.getNString("username"),
                         rs.getNString("password"),
                         rs.getNString("email"),
                         rs.getDate("created_date"),
@@ -72,11 +72,11 @@ public class AccountDAO {
 
     //Account Register
     //-----------------------------------------------------------------------------------------------------------------
-    public int acRegister(Accounts acc) throws SQLException {
+    public int acRegister(Account acc) throws SQLException {
 
         con = DBHelper.getInstance().getCon();
         int status = 0;
-        String query = "INSERT INTO accounts (usrname,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
+        String query = "INSERT INTO accounts (username,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setNString(1, acc.getUsername());
         pstt.setNString(2, acc.getPassword());
@@ -91,17 +91,17 @@ public class AccountDAO {
 
     //Get All Account Data
     //------------------------------------------------------------------------------------------------------------------
-    public List<Accounts> allACData() throws SQLException {
-        List<Accounts> accs = new ArrayList<>();
+    public List<Account> allACData() throws SQLException {
+        List<Account> accs = new ArrayList<>();
         con = DBHelper.getInstance().getCon();
         String query = "SELECT * FROM accounts;";
         PreparedStatement pstt = con.prepareStatement(query);
         ResultSet rs = pstt.executeQuery();
         while (rs.next()) {
-            user = new Accounts(
+            user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -114,17 +114,17 @@ public class AccountDAO {
 
     //Get Account Data by ID
     //------------------------------------------------------------------------------------------------------------------
-    public Accounts acDataByID(int id) throws SQLException {
+    public Account acDataByID(int id) throws SQLException {
         con = DBHelper.getInstance().getCon();
         String query = "SELECT * FROM accounts WHERE id = ?;";
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setInt(1, id);
         ResultSet rs = pstt.executeQuery();
         while (rs.next()) {
-            user = new Accounts(
+            user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -136,7 +136,7 @@ public class AccountDAO {
 
     // Account Data Updating
     //------------------------------------------------------------------------------------------------------------------
-    public int updateAC(Accounts acc) throws SQLException {
+    public int updateAC(Account acc) throws SQLException {
         int status = 0;
         con = DBHelper.getInstance().getCon();
         String query = "UPDATE accounts username, password, email, role_id, updated_date SET username=?,password=?,email=?,updated_data=CURDATE() WHERE id = ?;";

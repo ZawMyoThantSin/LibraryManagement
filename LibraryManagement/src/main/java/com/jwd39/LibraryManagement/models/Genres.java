@@ -1,20 +1,25 @@
 package com.jwd39.LibraryManagement.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Genres {
     private int genre_id;
     private String genre_name;
-    private Date created_date,updated_date;
+    private Timestamp created_date,updated_date;
 
     public Genres() {
+    }
+
+    public Genres(String genre_name) {
+        this.genre_name = genre_name;
     }
 
     public Genres(int genre_id, String genre_name, Date created_date, Date updated_date) {
         this.genre_id = genre_id;
         this.genre_name = genre_name;
-        this.created_date = created_date;
-        this.updated_date = updated_date;
+        this.created_date = (Timestamp) created_date;
+        this.updated_date = (Timestamp) updated_date;
     }
 
     public Genres(int genre_id, String genre_name) {
@@ -43,7 +48,7 @@ public class Genres {
     }
 
     public void setCreated_date(Date create_date) {
-        this.created_date = create_date;
+        this.created_date = (Timestamp) create_date;
     }
 
     public Date getUpdated_date() {
@@ -51,6 +56,6 @@ public class Genres {
     }
 
     public void setUpdated_date(Date updated_date) {
-        this.updated_date = updated_date;
+        this.updated_date = (Timestamp) updated_date;
     }
 }
