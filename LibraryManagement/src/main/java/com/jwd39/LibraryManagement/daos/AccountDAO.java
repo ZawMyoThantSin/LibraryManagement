@@ -19,7 +19,7 @@ public class AccountDAO {
     //---------------------------------------------------------------------------------------------------------------
     public Account userValidate(String username, String password) {
         Connection connection = DBHelper.getInstance().getCon();
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
         try (
                 PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, username);
@@ -29,9 +29,9 @@ public class AccountDAO {
                     Account user = new Account();
                     user.setId(rs.getInt("id"));
                     user.setRole_id(rs.getInt("role_id"));
-                    user.setUsername(rs.getString("usrname"));
+                    user.setUsername(rs.getString("username"));
                     user.setEmail(rs.getString("email"));
-                    user.setPassword(rs.getString("password")  );
+                    user.setPassword(rs.getString("password"));
                     user.setCreated_date(rs.getDate("created_date"));
                     user.setUpdated_date(rs.getDate("updated_date"));
                     return user;
@@ -43,9 +43,9 @@ public class AccountDAO {
         return null;
     }
 
-    public Account acLogIn(String userName, String password)
+    public Account acLogIn(String userName,String password)
             throws SQLException {
-        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
         con = DBHelper.getInstance().getCon();
         try {
             PreparedStatement pstt = con.prepareStatement(query);
@@ -56,7 +56,7 @@ public class AccountDAO {
                 this.user = new Account(
                         rs.getInt("id"),
                         rs.getInt("role_id"),
-                        rs.getNString("usrname"),
+                        rs.getNString("username"),
                         rs.getNString("password"),
                         rs.getNString("email"),
                         rs.getDate("created_date"),
@@ -76,7 +76,7 @@ public class AccountDAO {
 
         con = DBHelper.getInstance().getCon();
         int status = 0;
-        String query = "INSERT INTO accounts (usrname,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
+        String query = "INSERT INTO accounts (username,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
         PreparedStatement pstt = con.prepareStatement(query);
         pstt.setNString(1, acc.getUsername());
         pstt.setNString(2, acc.getPassword());
@@ -101,7 +101,7 @@ public class AccountDAO {
             user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -114,7 +114,7 @@ public class AccountDAO {
 
     //Get Account Data by ID
     //------------------------------------------------------------------------------------------------------------------
-    public Account getAccById(int id) throws SQLException {
+    public Account acDataByID(int id) throws SQLException {
         con = DBHelper.getInstance().getCon();
         String query = "SELECT * FROM accounts WHERE id = ?;";
         PreparedStatement pstt = con.prepareStatement(query);
@@ -124,7 +124,7 @@ public class AccountDAO {
             user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("usrname"),
+                    rs.getNString("username"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -136,7 +136,7 @@ public class AccountDAO {
 
     // Account Data Updating
     //------------------------------------------------------------------------------------------------------------------
-    public int updateAccount(Account acc) throws SQLException {
+    public int updateAC(Account acc) throws SQLException {
         int status = 0;
         con = DBHelper.getInstance().getCon();
         String query = "UPDATE accounts username, password, email, role_id, updated_date SET username=?,password=?,email=?,updated_data=CURDATE() WHERE id = ?;";
