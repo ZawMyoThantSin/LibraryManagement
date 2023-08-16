@@ -51,4 +51,19 @@ public class GenresDAO {
         return genres;
     }
 
+    public int deleteGenre(int id){
+        int status=0;
+        Connection con=DBHelper.getInstance().getCon();
+        String query="DELETE FROM genres WHERE genre_id=?";
+        try {
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setInt(1,id);
+            status=ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
 }
