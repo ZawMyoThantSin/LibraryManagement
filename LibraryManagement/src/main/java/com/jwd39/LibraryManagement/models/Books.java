@@ -8,22 +8,12 @@ public class Books {
     private int id;
     private String bookname;
     private String description;
-    private int genreid;
-    private int authorid;
+    private int genre_id;
+    private int author_id;
     private String cover_image_name;
     private Timestamp create_date;
     private Timestamp updated_date;
     private Delete is_delete;
-
-    public Books(int id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp created_date, Timestamp updated_date) {
-    }
-
-    public Books() {
-
-    }
-
-    public Books(String bookname) {
-    }
 
     public int getId() {
         return id;
@@ -49,20 +39,20 @@ public class Books {
         this.description = description;
     }
 
-    public int getGenreid() {
-        return genreid;
+    public int getGenre_id() {
+        return genre_id;
     }
 
-    public void setGenreid(int genreid) {
-        this.genreid = genreid;
+    public void setGenre_id(int genre_id) {
+        this.genre_id = genre_id;
     }
 
-    public int getAuthorid() {
-        return authorid;
+    public int getAuthor_id() {
+        return author_id;
     }
 
-    public void setAuthorid(int authorid) {
-        this.authorid = authorid;
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
     }
 
     public String getCover_image_name() {
@@ -97,12 +87,24 @@ public class Books {
         this.is_delete = is_delete;
     }
 
+    public Books(int id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp created_date, Timestamp updated_date) {
+    }
+
+    public Books() {
+
+    }
+
+    public Books(String bookname) {
+    }
+
+
+
     public Books(int id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp create_date, Timestamp updated_date, Delete is_delete) {
         this.id = id;
         this.bookname = bookname;
         this.description = description;
-        this.genreid = genreid;
-        this.authorid = authorid;
+        this.genre_id = genreid;
+        this.author_id = authorid;
         this.cover_image_name = cover_image_name;
         this.create_date = create_date;
         this.updated_date = updated_date;

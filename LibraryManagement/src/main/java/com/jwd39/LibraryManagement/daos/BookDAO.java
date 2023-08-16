@@ -20,13 +20,13 @@ public class BookDAO {
     //---------------------------------------------------------------------
     public int addBook(Books book) throws SQLException {
         int status = 0;
-        String query = "INSERT INTO books (bookname,description,genreid,authorid,cover_image_name,created_date,updated_date) VALUES (?,?,?,?,?,CURDATE(),CURDATE());";
+        String query = "INSERT INTO books (bookname,description,genre_id,author_id,cover_image_name,created_date,updated_date) VALUES (?,?,?,?,?,CURDATE(),CURDATE());";
         con = DBHelper.getInstance().getCon();
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1,book.getBookname());
         ps.setString(2,book.getDescription());
-        ps.setInt(3,book.getGenreid());
-        ps.setInt(4,book.getAuthorid());
+        ps.setInt(3,book.getGenre_id());
+        ps.setInt(4,book.getAuthor_id());
         ps.setString(5,book.getCover_image_name());
 
         status =ps.executeUpdate();
@@ -46,8 +46,8 @@ public class BookDAO {
                     rs.getInt("id"),
                     rs.getNString("bookname"),
                     rs.getNString("description"),
-                    rs.getInt("genreid"),
-                    rs.getInt("authorid"),
+                    rs.getInt("genre_id"),
+                    rs.getInt("author_id"),
                     rs.getNString("cover_image_name"),
                     rs.getTimestamp("create_date"),
                     rs.getTimestamp("updated_date")
@@ -70,8 +70,8 @@ public class BookDAO {
                     rs.getInt("id"),
                     rs.getNString("bookname"),
                     rs.getNString("description"),
-                    rs.getInt("genreid"),
-                    rs.getInt("authorid"),
+                    rs.getInt("genre_id"),
+                    rs.getInt("author_id"),
                     rs.getNString("cover_image_name"),
                     rs.getTimestamp("created_date"),
                     rs.getTimestamp("updated_date"));
@@ -88,8 +88,8 @@ public class BookDAO {
         PreparedStatement ps= con.prepareStatement(query);
         ps.setNString(1,book.getBookname());
         ps.setNString(2,book.getDescription());
-        ps.setInt(3,book.getGenreid());
-        ps.setInt(4,book.getAuthorid());
+        ps.setInt(3,book.getGenre_id());
+        ps.setInt(4,book.getAuthor_id());
         ps.setString(5,book.getCover_image_name());
         ps.setInt(6,book.getId());
 
