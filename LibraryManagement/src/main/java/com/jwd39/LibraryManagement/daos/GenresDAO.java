@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 public class GenresDAO {
 
     private Connection con;
@@ -44,8 +43,6 @@ public class GenresDAO {
                 Genres genre=new Genres();
                 genre.setGenre_id(rs.getInt("genre_id"));
                 genre.setGenre_name(rs.getString("genre_name"));
-                genre.setCreated_date(rs.getTimestamp("created_date"));
-                genre.setUpdated_date(rs.getTimestamp("updated_date"));
                 genres.add(genre);
             }
         } catch (SQLException e) {
