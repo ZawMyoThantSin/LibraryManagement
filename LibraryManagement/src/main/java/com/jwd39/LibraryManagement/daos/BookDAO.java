@@ -36,14 +36,14 @@ public class BookDAO {
 
     //GetBookID
     //---------------------------------------------------------
-    public Books getBookById(int id) throws SQLException {
+    public Books getBookById(int book_id) throws SQLException {
         con=DBHelper.getInstance().getCon();
-        String query = "SELECT * FROM books WHERE id = ?";
+        String query = "SELECT * FROM books WHERE book_id = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             book = new Books(
-                    rs.getInt("id"),
+                    rs.getInt("book_id"),
                     rs.getNString("bookname"),
                     rs.getNString("description"),
                     rs.getInt("genre_id"),
@@ -67,7 +67,7 @@ public class BookDAO {
         ResultSet rs= ps.executeQuery();
         while (rs.next()) {
             book = new Books(
-                    rs.getInt("id"),
+                    rs.getInt("book_id"),
                     rs.getNString("bookname"),
                     rs.getNString("description"),
                     rs.getInt("genre_id"),
@@ -98,12 +98,12 @@ public class BookDAO {
     }
 
     //BookDelete
-    public int deleteBook(int id) throws SQLException {
+    public int deleteBook(int book_id) throws SQLException {
         con= DBHelper.getInstance().getCon();
-        String query = "DELETE FROM books where id=?";
+        String query = "DELETE FROM books where book_id=?";
         int status=0;
         PreparedStatement ps= con.prepareStatement(query);
-        ps.setInt(1,id);
+        ps.setInt(1,book_id);
         status=  ps.executeUpdate();
 
         return status;

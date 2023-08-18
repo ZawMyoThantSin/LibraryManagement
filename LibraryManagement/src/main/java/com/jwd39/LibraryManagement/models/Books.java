@@ -5,7 +5,7 @@ import org.hibernate.sql.Delete;
 import java.sql.Timestamp;
 
 public class Books {
-    private int id;
+    private int book_id;
     private String bookname;
     private String description;
     private int genre_id;
@@ -16,11 +16,11 @@ public class Books {
     private Delete is_delete;
 
     public int getId() {
-        return id;
+        return book_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.book_id = book_id;
     }
 
     public String getBookname() {
@@ -87,7 +87,7 @@ public class Books {
         this.is_delete = is_delete;
     }
 
-    public Books(int id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp created_date, Timestamp updated_date) {
+    public Books(int book_id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp created_date, Timestamp updated_date) {
     }
 
     public Books() {
@@ -99,8 +99,8 @@ public class Books {
 
 
 
-    public Books(int id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp create_date, Timestamp updated_date, Delete is_delete) {
-        this.id = id;
+    public Books(int book_id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp create_date, Timestamp updated_date, Delete is_delete) {
+        this.book_id = book_id;
         this.bookname = bookname;
         this.description = description;
         this.genre_id = genreid;
