@@ -34,11 +34,6 @@ public class BookController {
     }
 
     // Read all books
-    @GetMapping()
-    public String getAllBooks(Model model) {
-    List<Books> books = new ArrayList<>();
-    model.addAttribute("books",books);
-        return "admin/admin.home";
-    }
+
 }
 
