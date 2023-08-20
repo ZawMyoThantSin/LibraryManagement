@@ -6,45 +6,45 @@ import java.util.Date;
 public class Account {
 
     private int id,role_id;
-    private String username,password,email;
+    private String usrname,password,email;
     private Date created_date,updated_date;
 
     public Account() {
     }
 
-    public Account(int id, int role_id, String username, String password, String email, Date created_date, Date updated_date) {
+    public Account(int id, int role_id, String usrname, String password, String email, Date created_date, Date updated_date) {
         this.id = id;
         this.role_id = role_id;
-        this.username = username;
+        this.usrname = usrname;
         this.password = password;
         this.email = email;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
 
-    public Account(String username, String password, String email, int role_id) {
-        this.username = username;
+    public Account(String usrname, String password, String email, int role_id) {
+        this.usrname = usrname;
         this.password = password;
         this.email = email;
         this.role_id= role_id;
     }
 
-    public Account(int id, int role_id, String username, String password, String email) {
+    public Account(int id, int role_id, String usrname, String password, String email) {
         this.id = id;
         this.role_id = role_id;
-        this.username = username;
+        this.usrname = usrname;
         this.password = password;
         this.email = email;
     }
 
-    public Account(String username, String password, String email) {
-        this.username = username;
+    public Account(String usrname, String password, String email) {
+        this.usrname = usrname;
         this.password = password;
         this.email = email;
     }
 
-    public Account(String username, String password) {
-        this.username = username;
+    public Account(String usrname, String password) {
+        this.usrname = usrname;
         this.password = password;
     }
 
@@ -64,12 +64,12 @@ public class Account {
         this.role_id = role_id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsrname() {
+        return usrname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsrname(String usrname) {
+        this.usrname = usrname;
     }
 
     public String getPassword() {
@@ -109,7 +109,7 @@ public class Account {
         return "Account{" +
                 "id=" + id +
                 ", role_id=" + role_id +
-                ", username='" + username + '\'' +
+                ", username='" + usrname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", created_date=" + created_date +
