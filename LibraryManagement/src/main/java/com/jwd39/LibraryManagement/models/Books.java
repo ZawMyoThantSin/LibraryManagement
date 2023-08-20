@@ -11,7 +11,7 @@ public class Books {
     private int genre_id;
     private int author_id;
     private String cover_image_name;
-    private Timestamp create_date;
+    private Timestamp created_date;
     private Timestamp updated_date;
     private Delete is_delete;
 
@@ -63,12 +63,12 @@ public class Books {
         this.cover_image_name = cover_image_name;
     }
 
-    public Timestamp getCreate_date() {
-        return create_date;
+    public Timestamp getCreated_date() {
+        return created_date;
     }
 
-    public void setCreate_date(Timestamp create_date) {
-        this.create_date = create_date;
+    public void setCreated_date(Timestamp create_date) {
+        this.created_date = created_date;
     }
 
     public Timestamp getUpdated_date() {
@@ -99,14 +99,14 @@ public class Books {
 
 
 
-    public Books(int book_id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp create_date, Timestamp updated_date, Delete is_delete) {
+    public Books(int book_id, String bookname, String description, int genreid, int authorid, String cover_image_name, Timestamp created_date, Timestamp updated_date, Delete is_delete) {
         this.book_id = book_id;
         this.bookname = bookname;
         this.description = description;
         this.genre_id = genreid;
         this.author_id = authorid;
         this.cover_image_name = cover_image_name;
-        this.create_date = create_date;
+        this.created_date = created_date;
         this.updated_date = updated_date;
         this.is_delete = is_delete;
     }

@@ -49,7 +49,7 @@ public class BookDAO {
                     rs.getInt("genre_id"),
                     rs.getInt("author_id"),
                     rs.getNString("cover_image_name"),
-                    rs.getTimestamp("create_date"),
+                    rs.getTimestamp("created_date"),
                     rs.getTimestamp("updated_date")
             );
 
