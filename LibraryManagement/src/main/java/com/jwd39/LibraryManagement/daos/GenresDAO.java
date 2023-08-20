@@ -19,7 +19,7 @@ public class GenresDAO {
     public int genresCreate(Genres genres){
         int status=0;
         con = DBHelper.getInstance().getCon();
-        String query="INSERT INTO library.genres (genre_name) VALUE (?)";
+        String query="INSERT INTO genres (genre_name,created_date,updated_date) VALUES (?,CURDATE(),CURDATE())";
         try {
             PreparedStatement ps=con.prepareStatement(query);
             ps.setString(1,genres.getGenre_name());
@@ -35,7 +35,7 @@ public class GenresDAO {
         List<Genres> genres=new ArrayList<>();
         ResultSet rs;
         con=DBHelper.getInstance().getCon();
-        String query="SELECT * FROM library.genres";
+        String query="SELECT * FROM genres";
         try {
             PreparedStatement ps=con.prepareStatement(query);
             rs=ps.executeQuery();
@@ -51,6 +51,7 @@ public class GenresDAO {
         return genres;
     }
 
+    //delete
     public int deleteGenre(int id){
         int status=0;
         Connection con=DBHelper.getInstance().getCon();
@@ -65,5 +66,7 @@ public class GenresDAO {
 
         return status;
     }
+
+
 
 }

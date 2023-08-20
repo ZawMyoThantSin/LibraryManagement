@@ -19,7 +19,7 @@ public class AccountDAO {
     //---------------------------------------------------------------------------------------------------------------
     public Account userValidate(String username, String password) {
         Connection connection = DBHelper.getInstance().getCon();
-        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
         try (
                 PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, username);
@@ -29,7 +29,7 @@ public class AccountDAO {
                     Account user = new Account();
                     user.setId(rs.getInt("id"));
                     user.setRole_id(rs.getInt("role_id"));
-                    user.setUsername(rs.getString("username"));
+                    user.setUsrname(rs.getString("usrname"));
                     user.setEmail(rs.getString("email"));
                     user.setPassword(rs.getString("password"));
                     user.setCreated_date(rs.getDate("created_date"));
@@ -45,7 +45,7 @@ public class AccountDAO {
 
     public Account acLogIn(String userName,String password)
             throws SQLException {
-        String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM accounts WHERE usrname = ? AND password = ?";
         con = DBHelper.getInstance().getCon();
         try {
             PreparedStatement pstt = con.prepareStatement(query);
@@ -56,7 +56,7 @@ public class AccountDAO {
                 this.user = new Account(
                         rs.getInt("id"),
                         rs.getInt("role_id"),
-                        rs.getNString("username"),
+                        rs.getNString("usrname"),
                         rs.getNString("password"),
                         rs.getNString("email"),
                         rs.getDate("created_date"),
@@ -76,16 +76,14 @@ public class AccountDAO {
 
         con = DBHelper.getInstance().getCon();
         int status = 0;
-        String query = "INSERT INTO accounts (username,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
+        String query = "INSERT INTO accounts (usrname,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE());";
         PreparedStatement pstt = con.prepareStatement(query);
-        pstt.setNString(1, acc.getUsername());
+        pstt.setNString(1, acc.getUsrname());
         pstt.setNString(2, acc.getPassword());
         pstt.setNString(3, acc.getEmail());
         pstt.setInt(4, acc.getRole_id());
 
         status = pstt.executeUpdate();
-
-
         return status;
     }
 
@@ -101,7 +99,7 @@ public class AccountDAO {
             user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("username"),
+                    rs.getNString("usrname"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -124,7 +122,7 @@ public class AccountDAO {
             user = new Account(
                     rs.getInt("id"),
                     rs.getInt("role_id"),
-                    rs.getNString("username"),
+                    rs.getNString("usrname"),
                     rs.getNString("password"),
                     rs.getNString("email"),
                     rs.getDate("created_date"),
@@ -139,9 +137,9 @@ public class AccountDAO {
     public int updateAC(Account acc) throws SQLException {
         int status = 0;
         con = DBHelper.getInstance().getCon();
-        String query = "UPDATE accounts username, password, email, role_id, updated_date SET username=?,password=?,email=?,updated_data=CURDATE() WHERE id = ?;";
+        String query = "UPDATE accounts usrname, password, email, role_id, updated_date SET usrname=?,password=?,email=?,updated_data=CURDATE() WHERE id = ?;";
         PreparedStatement pstt = con.prepareStatement(query);
-        pstt.setNString(1,acc.getUsername());
+        pstt.setNString(1,acc.getUsrname());
         pstt.setNString(2,acc.getPassword());
         pstt.setNString(3,acc.getEmail());
         pstt.setInt(4,acc.getId());

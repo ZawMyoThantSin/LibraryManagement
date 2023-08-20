@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String userLogin(@RequestParam String name, String password,
-                            HttpSession session,Model model) throws SQLException {
+                            HttpSession session ,Model model) throws SQLException {
         String pass = SHA_256Helper.encrypt(password);
         Account user = new AccountDAO().userValidate(name,pass);
             System.out.println(user);
