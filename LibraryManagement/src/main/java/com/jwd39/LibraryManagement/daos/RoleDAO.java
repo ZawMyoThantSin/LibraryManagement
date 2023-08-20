@@ -34,7 +34,7 @@ public class RoleDAO {
 
         List<Roles> roles = new ArrayList<>();
         con = DBHelper.getInstance().getCon();
-        String query = "SELECT * FROM roles;";
+        String query = "SELECT * FROM roles";
         PreparedStatement pstt = con.prepareStatement(query);
         ResultSet rs = pstt.executeQuery();
         while (rs.next()) {
