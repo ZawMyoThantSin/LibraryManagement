@@ -1,16 +1,22 @@
 package com.jwd39.LibraryManagement.daos;
 
 import com.jwd39.LibraryManagement.helpers.MD5Helper;
+import com.jwd39.LibraryManagement.impls.AccountDaoImpl;
+import com.jwd39.LibraryManagement.impls.BookDaoImpl;
 import com.jwd39.LibraryManagement.models.Account;
+import com.jwd39.LibraryManagement.models.Book;
+import com.jwd39.LibraryManagement.services.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws SQLException {
-        String pass = MD5Helper.encrypt("123hello");
-        System.out.println(pass);
-        AccountDAO dao = new AccountDAO();
-        Account user = dao.acLogIn("test2","123");
-        System.out.println(user);
+    List<Book> books = new BookDaoImpl().getAll();
+    for (Book bo : books){
+        System.out.println(bo.getImageName()+bo.getBookName());
+    }
+
     }
 }

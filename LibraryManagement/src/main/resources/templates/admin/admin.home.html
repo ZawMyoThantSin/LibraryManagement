@@ -200,9 +200,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="genres : ${genres}">
-                                <td th:text="${genres.genre_id}"></td>
-                                <td th:text="${genres.genre_name}"></td>
+                            <tr th:each="genre : ${genre}">
+                                <td th:text="${genre.genre_id}"></td>
+                                <td th:text="${genre.genre_name}"></td>
                                 <td class="btn btn-sm btn-primary p-2 mt-2">Edit</td>
                                 <td class="btn btn-sm btn-danger p-2 mt-2">Delete</td>
                             </tr>
