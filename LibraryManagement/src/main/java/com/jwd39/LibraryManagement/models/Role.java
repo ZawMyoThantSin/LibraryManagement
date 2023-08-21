@@ -2,7 +2,7 @@ package com.jwd39.LibraryManagement.models;
 
 import java.util.Date;
 
-public class Roles {
+public class Role {
     private int role_id;
     private String rolename;
     private Date created_date, updated_date;
@@ -39,23 +39,23 @@ public class Roles {
         this.updated_date = updated_date;
     }
 
-    public Roles() {
+    public Role() {
     }
 
-    public Roles(int role_id, String rolename, Date created_date, Date updated_date) {
+    public Role(int role_id, String rolename, Date created_date, Date updated_date) {
         this.role_id = role_id;
         this.rolename = rolename;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
 
-    public Roles(String rolename, Date created_date, Date updated_date) {
+    public Role(String rolename, Date created_date, Date updated_date) {
         this.rolename = rolename;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
 
-    public Roles(int role_id, String rolename) {
+    public Role(int role_id, String rolename) {
         this.role_id = role_id;
         this.rolename = rolename;
     }

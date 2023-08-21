@@ -1,10 +1,10 @@
 package com.jwd39.LibraryManagement.controllers;
 
-import com.jwd39.LibraryManagement.daos.AccountDAO;
-import com.jwd39.LibraryManagement.helpers.MD5Helper;
 import com.jwd39.LibraryManagement.helpers.SHA_256Helper;
 import com.jwd39.LibraryManagement.models.Account;
+import com.jwd39.LibraryManagement.services.AccountService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.SQLException;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private AccountService accountService;
+
     @GetMapping("/user/login")
     public String userLogin(Model model){
         model.addAttribute("title","Login");
@@ -24,9 +27,9 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String userLogin(@RequestParam String name, String password,
-                            HttpSession session,Model model) throws SQLException {
+                            HttpSession session,Model model) {
         String pass = SHA_256Helper.encrypt(password);
-        Account user = new AccountDAO().userValidate(name,pass);
+        Account user = accountService.validate(name,pass);
             System.out.println(user);
            if (user!=null){
                int roleId = user.getRole_id();
@@ -50,10 +53,10 @@ public class UserController {
     }
 
     @PostMapping("/user/registration")
-    public String userCreate(@RequestParam String name,String email,String password,int roleId) throws SQLException {
+    public String userCreate(@RequestParam String name,String email,String password,int roleId) {
         String pass = SHA_256Helper.encrypt(password);
-        Account user = new Account(name,pass,email,roleId);
-        int status = new AccountDAO().acRegister(user);
+        Account user = new Account(name,email,pass,roleId);
+        int status = accountService.save(user);
         if(status==1){
             return "user/userView";
         }

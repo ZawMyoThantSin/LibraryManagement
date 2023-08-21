@@ -6,15 +6,10 @@
 </head>
 <body class="bg-dark text-white">
 
-<form class="container col-md-6 offset-md-3 mt-3 border border-primary">
+<form class="container col-md-6 offset-md-3 mt-3 border border-primary" action="/create/book" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend class="text-center"><u>Create Category</u></legend>
-        <div class="form-group">
-            <label for="id" class="col-form-label mt-4">Book ID</label>
 
-            <input type="text" readonly="" class="form-control" id="id" name="id" placeholder="Book ID">
-
-        </div>
 
         <div class="form-group">
             <label for="bookName" class="form-label mt-4">Book name</label>
@@ -23,8 +18,8 @@
         <div class="form-group">
             <label for="author" class="form-label mt-4">Authors</label>
             <!-- need Author id -->
-            <select class="form-select" id="author">
-                <option>1</option>
+            <select class="form-select" id="author" name="author_id">
+                <option value="1">1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -34,8 +29,8 @@
         <div class="form-group">
             <label for="genre" class="form-label mt-4">Genres</label>
             <!-- need genre id -->
-            <select class="form-select" id="genre">
-                <option>1</option>
+            <select class="form-select" id="genre" name="genre_id">
+                <option value="1">1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -45,12 +40,12 @@
 
         <div class="form-group">
             <label for="exampleTextarea" class="form-label mt-4">Descriptions</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            <textarea class="form-control" id="exampleTextarea" name="description" rows="3"></textarea>
         </div>
 
         <div class="form-group">
             <label for="cover" class="form-label mt-4">Cover Image name</label>
-            <input class="form-control" type="file" id="cover">
+            <input class="form-control" type="file" id="cover" name="photo" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-success">Create</button>

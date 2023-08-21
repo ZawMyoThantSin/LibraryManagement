@@ -22,10 +22,10 @@ public class Account {
         this.updated_date = updated_date;
     }
 
-    public Account(String username, String password, String email, int role_id) {
+    public Account(String username,  String email,String password, int role_id) {
         this.username = username;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.role_id= role_id;
     }
 
