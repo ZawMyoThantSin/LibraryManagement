@@ -28,7 +28,6 @@ public class BookDAO {
         ps.setInt(3,book.getGenre_id());
         ps.setInt(4,book.getAuthor_id());
         ps.setString(5,book.getCover_image_name());
-
         status =ps.executeUpdate();
 
         return status;
@@ -111,4 +110,8 @@ public class BookDAO {
 
 
 
-}
+
+    }
+
+
+

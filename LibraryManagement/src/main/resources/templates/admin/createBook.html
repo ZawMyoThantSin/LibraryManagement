@@ -6,7 +6,7 @@
 </head>
 <body class="bg-dark text-white">
 
-<form class="container col-md-6 offset-md-3 mt-3 border border-primary">
+<form class="container col-md-6 offset-md-3 mt-3 border border-primary" method="post" action="/books" enctype="multipart/form-data" >
     <fieldset>
         <legend class="text-center"><u>Create Category</u></legend>
         <div class="form-group">
@@ -23,34 +23,34 @@
         <div class="form-group">
             <label for="author" class="form-label mt-4">Authors</label>
             <!-- need Author id -->
-            <select class="form-select" id="author">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-select" id="author" name="author">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="genre" class="form-label mt-4">Genres</label>
+            <label for="genre" class="form-label mt-4" >Genres</label>
             <!-- need genre id -->
-            <select class="form-select" id="genre">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-select" id="genre" name="genre">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="exampleTextarea" class="form-label mt-4">Descriptions</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            <label for="exampleTextarea" class="form-label mt-4" >Descriptions</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" name="description"></textarea>
         </div>
 
         <div class="form-group">
             <label for="cover" class="form-label mt-4">Cover Image name</label>
-            <input class="form-control" type="file" id="cover">
+            <input class="form-control" type="file" id="cover" name="cover" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-success">Create</button>

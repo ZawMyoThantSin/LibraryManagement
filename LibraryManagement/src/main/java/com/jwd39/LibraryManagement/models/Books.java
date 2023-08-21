@@ -15,6 +15,14 @@ public class Books {
     private Timestamp updated_date;
     private Delete is_delete;
 
+    public Books(String bookname, String description, int genre_id, int author_id, String cover_image_name) {
+        this.bookname = bookname;
+        this.description = description;
+        this.genre_id = genre_id;
+        this.author_id = author_id;
+        this.cover_image_name = cover_image_name;
+    }
+
     public int getId() {
         return book_id;
     }
