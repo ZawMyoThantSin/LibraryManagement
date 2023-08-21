@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master::footer">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Show All PHoto</h1>
+<div th:each="photo : ${books}">
+    <img th:src="${photo.imageName}" >
+    <p th:text="${photo.imageName}"></p>
+</div>
+<img src="../static/images/book1.jpg">
+<div th:replace="master::footer"></div>
+</body>
+</html>
