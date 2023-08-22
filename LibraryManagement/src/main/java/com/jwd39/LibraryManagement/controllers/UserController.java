@@ -26,14 +26,12 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String userLogin(@RequestParam String name, String password,
-                            HttpSession session,Model model) {
+    public String userLogin(@RequestParam String name, String password,HttpSession session,Model model) {
         String pass = SHA_256Helper.encrypt(password);
         Account user = accountService.validate(name,pass);
-            System.out.println(user);
-           if (user!=null){
-               int roleId = user.getRole_id();
-               switch (roleId){
+        if (user!=null){
+            int roleId = user.getRole_id();
+                switch (roleId){
                    case 1:
                        session.setAttribute("admin",user);
                        return "admin/admin.home";
@@ -48,14 +46,13 @@ public class UserController {
 
     @GetMapping("/user/registration")
     public String userCreate(Model model){
-        model.addAttribute("title","User Create");
+        model.addAttribute("title","User Registration");
         return "user/userRegistration";
     }
 
     @PostMapping("/user/registration")
     public String userCreate(@RequestParam String name,String email,String password,int roleId) {
-        String pass = SHA_256Helper.encrypt(password);
-        Account user = new Account(name,email,pass,roleId);
+        Account user = new Account(name,email,password,roleId);
         int status = accountService.save(user);
         if(status==1){
             return "user/userView";

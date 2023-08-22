@@ -6,10 +6,7 @@ import com.jwd39.LibraryManagement.models.Book;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +19,8 @@ public class BookDaoImpl implements BookDao {
     public int save(Book book) {
         connection = DBHelper.getInstance().getCon();
         int status= 0;
-        String query ="INSERT INTO books (bookname,description,genre_id,author_id,cover_image_name,created_date,updated_date) VALUES (?,?,?,?,?,CURDATE(),CURDATE());";
+        String query ="INSERT INTO books (bookname,description,genre_id,author_id,cover_image_name,book_file_name,created_date,updated_date) VALUES (?,?,?,?,?,?,CURDATE(),CURDATE());";
+
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,book.getBookName());
@@ -30,7 +28,9 @@ public class BookDaoImpl implements BookDao {
             statement.setInt(3,book.getGenre_id());
             statement.setInt(4,book.getAuthor_id());
             statement.setString(5,book.getImageName());
+            statement.setString(6,book.getFileName());
             status =statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,6 +75,7 @@ public class BookDaoImpl implements BookDao {
                 book.setGenre_id(rs.getInt("genre_id"));
                 book.setAuthor_id(rs.getInt("author_id"));
                 book.setImageName(rs.getNString("cover_image_name"));
+                book.setFileName(rs.getNString("book_file_name"));
                 book.setCreated_date(rs.getTimestamp("created_date"));
                 book.setUpdated_date( rs.getTimestamp("updated_date"));
 
@@ -101,6 +102,7 @@ public class BookDaoImpl implements BookDao {
                         rs.getNString("bookname"),
                         rs.getNString("description"),
                         rs.getNString("cover_image_name"),
+                        rs.getString("book_file_name"),
                         rs.getTimestamp("create_date"),
                         rs.getTimestamp("updated_date")
                 );

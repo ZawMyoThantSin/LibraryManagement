@@ -4,16 +4,27 @@ import java.util.Date;
 
 public class Book {
     private int book_id,genre_id,author_id;
-    private String bookName,description,imageName;
+    private String bookName,description,imageName,fileName;
     private Date created_date,updated_date;
+    private boolean isDelete;
 
-    public Book(int book_id, int genre_id, int author_id, String bookName, String description, String imageName, Date created_date, Date updated_date) {
+    public Book(String bookName,String description,int genre_id,int author_id,String imageName,String fileName) {
+        this.bookName = bookName;
+        this.description = description;
+        this.genre_id = genre_id;
+        this.author_id = author_id;
+        this.imageName = imageName;
+        this.fileName = fileName;
+    }
+
+    public Book(int book_id, int genre_id, int author_id, String bookName, String description, String imageName,String fileName, Date created_date, Date updated_date) {
         this.book_id = book_id;
         this.genre_id = genre_id;
         this.author_id = author_id;
         this.bookName = bookName;
         this.description = description;
         this.imageName = imageName;
+        this.fileName = fileName;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
@@ -78,6 +89,14 @@ public class Book {
         this.imageName = imageName;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public Date getCreated_date() {
         return created_date;
     }
@@ -92,5 +111,13 @@ public class Book {
 
     public void setUpdated_date(Date updated_date) {
         this.updated_date = updated_date;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 }
