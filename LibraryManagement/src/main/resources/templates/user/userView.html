@@ -43,7 +43,7 @@
             <button class="btn btn-outline-primary btn-lg mt-3">Search Here Now</button>
         </div>
         <div width="50%" class="float-right">
-            <img src="/images/book-png.png" class="rounded float-right" alt="..." width="350px" height="350px">
+            <img src="/images/books-png.png" class="rounded float-right" alt="..." width="350px" height="350px">
         </div>
     </div>
 </div>
@@ -54,27 +54,19 @@
 
 <div class="card-deck center m-auto container">
     <div class="card">
-        <img src="/images/book1.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
+        <ul>
+            <th:block th:each="book : ${books}">
+                <li><img th:src="@{/C:/Users/HUAWEI/Desktop/LibraryManagement/LibraryManagement/LibraryManagement/${book.imageName}"></li>
+            </th:block>
+        </ul>
         <div class="card-body text-dark">
             <h5 class="card-title">Card title</h5>
             <p class="card-text text-dark">Text<a href="#">see more</a></p>
             <a href="#" type="button" class="btn btn-secondary">Details</a>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
+        
     </div>
-    <div class="card">
-        <img src="/images/book2.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-dark"> Text<a href="#">see more</a></p>
-            <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
+
 
     <div class="card">
         <img src="/images/book4.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">

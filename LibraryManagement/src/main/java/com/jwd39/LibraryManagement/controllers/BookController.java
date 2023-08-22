@@ -14,6 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +41,16 @@ public class BookController {
 
         String uploadPath =System.getProperty("user.dir")+"";
         System.out.println(uploadPath);
-         String filePath = uploadPath+ File.separator +fileName;
-         photo.transferTo(new File(filePath));
+        String filePath = uploadPath+ File.separator +fileName;
+        photo.transferTo(new File(filePath));
 
-         Book books = new Book();
-         books.setBookName(bookName);
-         books.setAuthor_id(author_id);
-         books.setGenre_id(genre_id);
-         books.setDescription(description);
-         books.setImageName(filePath);
-         int status  = new BookDaoImpl().save(books);
+        Book books = new Book();
+        books.setBookName(bookName);
+        books.setAuthor_id(author_id);
+        books.setGenre_id(genre_id);
+        books.setDescription(description);
+        books.setImageName(filePath);
+        int status  = new BookDaoImpl().save(books);
         System.out.println(status==1? "success": "Fail");
 
 
@@ -61,7 +64,7 @@ public class BookController {
             System.out.println(bo.getImageName()+bo.getBookName());
         }
         model.addAttribute("books",books);
-        return "test";
+        return "userView";
     }
 
 }
