@@ -2,49 +2,47 @@ package com.jwd39.LibraryManagement.models;
 
 import java.util.Date;
 
-
 public class Account {
-
-    private int id,role_id;
-    private String usrname,password,email;
-    private Date created_date,updated_date;
+    private int id, role_id;
+    private String username, password, email;
+    private Date created_date, updated_date;
 
     public Account() {
     }
 
-    public Account(int id, int role_id, String usrname, String password, String email, Date created_date, Date updated_date) {
+    public Account(int id, int role_id, String username, String password, String email, Date created_date, Date updated_date) {
         this.id = id;
         this.role_id = role_id;
-        this.usrname = usrname;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.created_date = created_date;
         this.updated_date = updated_date;
     }
 
-    public Account(String usrname, String password, String email, int role_id) {
-        this.usrname = usrname;
-        this.password = password;
+    public Account(String username, String email, String password, int role_id) {
+        this.username = username;
         this.email = email;
-        this.role_id= role_id;
+        this.password = password;
+        this.role_id = role_id;
     }
 
-    public Account(int id, int role_id, String usrname, String password, String email) {
+    public Account(int id, int role_id, String username, String password, String email) {
         this.id = id;
         this.role_id = role_id;
-        this.usrname = usrname;
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public Account(String usrname, String password, String email) {
-        this.usrname = usrname;
+    public Account(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public Account(String usrname, String password) {
-        this.usrname = usrname;
+    public Account(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -64,12 +62,12 @@ public class Account {
         this.role_id = role_id;
     }
 
-    public String getUsrname() {
-        return usrname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsrname(String usrname) {
-        this.usrname = usrname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -109,11 +107,13 @@ public class Account {
         return "Account{" +
                 "id=" + id +
                 ", role_id=" + role_id +
-                ", username='" + usrname + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", created_date=" + created_date +
                 ", updated_date=" + updated_date +
                 '}';
+
+
     }
 }
