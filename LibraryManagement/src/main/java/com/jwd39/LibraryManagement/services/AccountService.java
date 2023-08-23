@@ -1,6 +1,7 @@
 package com.jwd39.LibraryManagement.services;
 
 import com.jwd39.LibraryManagement.daos.AccountDao;
+import com.jwd39.LibraryManagement.helpers.SHA_256Helper;
 import com.jwd39.LibraryManagement.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class AccountService {
 
 
     public int save(Account account){
+       String hashed = SHA_256Helper.encrypt(account.getPassword());
+       account.setPassword(hashed);
         return accountDao.save(account);
     }
 

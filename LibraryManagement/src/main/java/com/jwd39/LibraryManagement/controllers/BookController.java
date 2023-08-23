@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,38 +35,36 @@ public class BookController {
         return "admin/createBook";
     }
 
-
     @PostMapping("/create/book")
-    public String createBooks(@RequestParam String bookName, int author_id, int genre_id,String description, MultipartFile photo) throws SQLException, IOException {
-        String fileName= photo.getOriginalFilename();
+    public String createBooks(@RequestParam String bookName, int author_id, int genre_id,String description,
+                              MultipartFile coverImg,MultipartFile bookFile )  {
+        String imageName = coverImg.getOriginalFilename();
+        String bookFileName = bookFile.getOriginalFilename();
+        Path bookDirectory = Paths.get("src/main/resources/static/uploads/covers/", bookName);
+        try {
+            Files.createDirectories(bookDirectory);
 
-        String uploadPath =System.getProperty("user.dir")+"";
-        System.out.println(uploadPath);
-        String filePath = uploadPath+ File.separator +fileName;
-        photo.transferTo(new File(filePath));
+            Files.write(bookDirectory.resolve(imageName), coverImg.getBytes());
+            Files.write(bookDirectory.resolve(bookFileName), bookFile.getBytes());
 
-        Book books = new Book();
-        books.setBookName(bookName);
-        books.setAuthor_id(author_id);
-        books.setGenre_id(genre_id);
-        books.setDescription(description);
-        books.setImageName(filePath);
-        int status  = new BookDaoImpl().save(books);
-        System.out.println(status==1? "success": "Fail");
-
-
-        return "admin/admin.home";
+            Book books = new Book(bookName,description,genre_id,author_id,imageName,bookFileName);
+            int status = new BookDaoImpl().save(books);
+            if (status==1){
+                return "redirect:admin/admin.home";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "errorPage"; // Redirect to an error page
+        }
+        return "admin/createBook";
     }
 
     @RequestMapping("/getAll")
     public String getAll(Model model){
         List<Book> books = bookService.getAll();
-        for (Book bo : books){
-            System.out.println(bo.getImageName()+bo.getBookName());
-        }
+
         model.addAttribute("books",books);
-        return "userView";
+        return "test";
     }
 
 }
-
