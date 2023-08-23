@@ -4,139 +4,263 @@
     <title th:text="${title}"></title>
     <title>Title</title>
 </head>
-<body class="bg-secondary">
-<div th:replace="master::navbar"></div>
+<style>
 
-<!--side bar-->
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">All</a>
-    <a href="#">Latest Books List</a>
-    <a href="#">Most Rated Books List</a>
-    <a href="#">Favourite</a>
-    <a href="#">Downloaded Books List</a>
-    <br>
-    <br>
-    <h3 class="text-white"><u>Genres</u></h3>
-    <a href="#">Business</a>
-    <a href="#">Comedy</a>
-    <a href="#">Education</a>
-    <a href="#">Ghost</a>
-    <a href="#">Politic</a>
-    <a href="#">History</a>
-    <a href="#">Health</a>
-    <a href="#">Travel</a>
-    <a href="#">Story</a>
-    <a href="#">Motivation</a>
+    /* home */
+    .home {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(12, 10, 10, 0.7), rgba(14, 10, 10, 0.7)), url("/images/libraryBg.jpg");
+        background-position: center;
+        background-size: cover;
+    }
 
-</div>
+    .homePage {
+        flex: 1;
+        padding: 50Px;
+    }
 
-<!--home page-->
-<div class="container-fluid mt-5">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-    <div class="container mt-3 d-flex">
-        <div width="50%" class="float-left">
-            <p class="display-3 text-monospace line-1 anim-typewriter">There is no <strong>Friend</strong> </br>
-                as <strong>Loyal</strong> as a
-                <strong>Book.</strong></p>
-            <p class="h5">-ERNEST HEMINGWAY</p>
-            <button class="btn btn-outline-primary btn-lg mt-3">Search Here Now</button>
+    .homeBooks {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 50px;
+    }
+
+    .menuIcon{
+        position: absolute;
+        top: 20%;
+
+    }
+
+    /* learn more button */
+    button {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        background: transparent;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+
+    button.learn-more {
+        width: 12rem;
+        height: auto;
+    }
+
+    button.learn-more .circle {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: relative;
+        display: block;
+        margin: 0;
+        width: 3rem;
+        height: 3rem;
+        background: #7e6c0e;
+        border-radius: 1.625rem;
+    }
+
+    button.learn-more .circle .icon {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #fff;
+    }
+
+    button.learn-more .circle .icon.arrow {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        left: 0.625rem;
+        width: 1.125rem;
+        height: 0.125rem;
+        background: none;
+    }
+
+    button.learn-more .circle .icon.arrow::before {
+        position: absolute;
+        content: "";
+        top: -0.29rem;
+        right: 0.0625rem;
+        width: 0.625rem;
+        height: 0.625rem;
+        border-top: 0.125rem solid #bfc279;
+    ;
+        border-right: 0.125rem solid #bfc279;
+        transform: rotate(45deg);
+    }
+
+    button.learn-more .button-text {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0;
+        margin: 0 0 0 1.85rem;
+        color: #edf107;
+        font-weight: 700;
+        line-height: 1.6;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    button:hover .circle {
+        width: 100%;
+    }
+
+    button:hover .circle .icon.arrow {
+        background: #bfc279;
+        transform: translate(1rem, 0);
+    }
+
+    button:hover .button-text {
+        color: #edf107;
+    ;
+    }
+
+    .card{
+        height: 75px;
+    }
+
+</style>
+<body>
+
+<div class="body">
+    <div class="home">
+        <nav class="navbar navbar-light justify-content-between border-outline-secondary">
+
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <img src="/images/book.png" width="50" height="50">
+                    <span class="text-warning">Web</span> <span class="text-white"><strong>Books</strong></span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active  text-white" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-white" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-white" href="#">Contact Us</a>
+                    </li>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+
+                        </div>
+                    </form>
+                </ul>
+
+            </div>
+        </nav>
+        <!--home page-->
+        <div class="row mt-5" style="height: 100vh; width: 100%;">
+
+            <!-- home text -->
+            <div class="col-md-6">
+                <div class="text-white justify-content-center-align-items-center mt-5 p-5">
+                    <h1 class="display-4 line-1 text-monospace anim-typewriter mt-5 p-5 mb-5">There is no <strong>Friend</strong> </br>
+                        as <strong>Loyal</strong> as a
+                        <strong>Book.</strong>
+                    </h1><br/>
+                    <p class="h5">-ERNEST HEMINGWAY</p>
+                    <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+                        <span class="button-text">Learn More</span>
+                    </button>
+                </div>
+            </div>
+            <!-- home 4 books -->
+            <div class="col-md-6">
+                <div class="d-inline-block justify-content-center-align-items-center p-4">
+                    <img src="/images/Himg1.jpg" class="shadow-lg m-4 w-25 h-50" alt="" width="50" height="auto">
+                    <img src="/images/Himg2.png" class="shadow-lg m-4 w-25 h-50" alt="" width="200" height="auto">,<br>
+                    <img src="/images/Himg3.png" class="shadow-lg m-4 w-25 h-50" alt="" width="200" height="auto">
+                    <img src="/images/Himg4.jpg" class="shadow-lg m-4 w-25 h-50" alt="" width="200" height="auto">
+                </div>
+            </div>
+
         </div>
-        <div width="50%" class="float-right">
-            <img src="/images/books-png.png" class="rounded float-right" alt="..." width="350px" height="350px">
+        <div class="menuIcon">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="text-white mt-5 p-5">&#9776;</span>
+
+            <!--side bar-->
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">All</a>
+                <a href="#">Latest Books List</a>
+                <a href="#">Most Rated Books List</a>
+                <a href="#">Favourite</a>
+                <a href="#">Downloaded Books List</a>
+                <br>
+                <br>
+                <h3 class="text-white"><u>Genres</u></h3>
+                <a href="#">Business</a>
+                <a href="#">Comedy</a>
+                <a href="#">Education</a>
+                <a href="#">Ghost</a>
+                <a href="#">Politic</a>
+                <a href="#">History</a>
+                <a href="#">Health</a>
+                <a href="#">Travel</a>
+                <a href="#">Story</a>
+                <a href="#">Motivation</a>
+
+            </div>
         </div>
     </div>
-</div>
 
-<hr color="gray" class="mt-5">
+</div>
+</div>
 
 <!--card image-->
-
-<div class="card-deck center m-auto container">
+<div class="card-deck center m-auto container mt-5 ">
     <div class="card">
-        <ul>
-            <th:block th:each="book : ${books}">
-                <li><img th:src="@{/C:/Users/HUAWEI/Desktop/LibraryManagement/LibraryManagement/LibraryManagement/${book.imageName}"></li>
-            </th:block>
-        </ul>
-        <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-dark">Text<a href="#">see more</a></p>
+        <img src="/images/Himg4.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
+        <div class="">
+            <h5 class="card-title">Book Name</h5>
             <a href="#" type="button" class="btn btn-secondary">Details</a>
         </div>
-        
-    </div>
 
-
-    <div class="card">
-        <img src="/images/book4.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-dark">Text  <a href="#">see more</a></p>
-            <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
     </div>
-    <div class="card">
-        <img src="/images/book2.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Text<a href="#">see more</a></p>
-            <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-</div>
-<div class="mt-3"></div>
-
-<div class="card-deck m-auto center container">
     <div class="card">
         <img src="/images/book1.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark mb-0">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-dark">Text<a href="#">see more</a></p>
+        <div class="card-body text-dark">
+            <h5 class="card-title">Book Name</h5>
+            <h6 class="card-title">Author Name</h6>
             <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/book2.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark mb-0">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-dark"> Text<a href="#">see more</a></p>
-            <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
         </div>
     </div>
 
     <div class="card">
-        <img src="/images/book4.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
-        <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text  mb-0">Text  <a href="#">see more</a></p>
-            <a href="#" type="button" class="btn btn-secondary">Details</a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
         <img src="/images/book2.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
         <div class="card-body text-dark">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text mb-0">Text<a href="#">see more</a></p>
+            <h5 class="card-title">Book Name</h5>
+            <h6 class="card-title">Author Name</h6>
             <a href="#" type="button" class="btn btn-secondary">Details</a>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+
+    </div>
+    <div class="card">
+        <img src="/images/book4.jpg" class="card-img-top w-100 p-3 figure-img img-fluid" alt="...">
+        <div class="card-body text-dark">
+            <h5 class="card-title">Book Name</h5>
+            <h6 class="card-title">Author Name</h6>
+            <p class="card-text">Text<a href="#">Details</a></p>
         </div>
     </div>
 </div>
@@ -157,6 +281,9 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 </script>
-<div th:replace="master::footer"></div>
+
+
 </body>
+
 </html>
+
