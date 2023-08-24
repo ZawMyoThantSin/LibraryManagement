@@ -9,7 +9,7 @@ public class AdminController {
     @GetMapping("/admin/home")
     public String adminHome(Model model){
         model.addAttribute("title","Admin Home");
-        return"admin/admin.home";
+        return"admin/adminHome";
     }
     @GetMapping("/book/create")
     public String createBook(){

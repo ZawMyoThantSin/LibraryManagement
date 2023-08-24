@@ -22,7 +22,7 @@ public class GenresController {
     public String createGenres(Model model){
         List<Genre> genres=new ArrayList<>();
         model.addAttribute("genres",genres);
-        return "admin/admin.home.html";
+        return "admin/adminHome.html";
     }
 
     @PostMapping("/genres")
@@ -31,9 +31,9 @@ public class GenresController {
             Genre genre = new Genre(genreName);
             int status = genreService.save(genre);
             if (status == 1)
-                return "admin/admin.home.html";
+                return "admin/adminHome.html";
         }
-        return "admin/admin.home.html";
+        return "admin/adminHome.html";
     }
 
 

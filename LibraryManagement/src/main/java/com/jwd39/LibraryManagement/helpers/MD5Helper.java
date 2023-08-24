@@ -33,4 +33,10 @@ public class MD5Helper {
             return encrypt.toString();
 
     }
+
+    public static String digest(String password){
+       String pass = SHA_256Helper.encrypt(password);
+       pass = encrypt(pass);
+       return pass;
+    }
 }

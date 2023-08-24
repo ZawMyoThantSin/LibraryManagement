@@ -140,7 +140,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <form class="user-form center m-auto" action="/user/registration" method="post">
+    <form class="user-form center m-auto" th:action="@{'/user/registration'}" method="post">
         <p class="title">Register </p>
             <label>
                 <input required="" placeholder="User Name" type="text" class="input" name="name">

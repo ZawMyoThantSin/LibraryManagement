@@ -21,7 +21,7 @@ public class Base64Converter {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        byte imagebytearray[] = new byte[(int) f.length()];
+        byte[] imagebytearray = new byte[(int) f.length()];
         try {
             fin.read(imagebytearray);
         } catch (IOException e) {
