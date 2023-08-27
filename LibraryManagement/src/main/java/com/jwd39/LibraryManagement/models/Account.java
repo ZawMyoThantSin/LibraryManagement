@@ -2,10 +2,12 @@ package com.jwd39.LibraryManagement.models;
 
 import java.util.Date;
 
+
 public class Account {
-    private int id, role_id;
-    private String username, password, email;
-    private Date created_date, updated_date;
+
+    private int id,role_id;
+    private String username,password,email;
+    private Date created_date,updated_date;
 
     public Account() {
     }
@@ -20,11 +22,11 @@ public class Account {
         this.updated_date = updated_date;
     }
 
-    public Account(String username, String email, String password, int role_id) {
+    public Account(String username,  String email,String password, int role_id) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role_id = role_id;
+        this.role_id= role_id;
     }
 
     public Account(int id, int role_id, String username, String password, String email) {
@@ -113,7 +115,5 @@ public class Account {
                 ", created_date=" + created_date +
                 ", updated_date=" + updated_date +
                 '}';
-
-
     }
 }

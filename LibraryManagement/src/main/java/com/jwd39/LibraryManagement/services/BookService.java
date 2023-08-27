@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookService<BookDao> {
+public class BookService {
     private final BookDao bookDao;
 
     @Autowired

@@ -3,26 +3,26 @@ package com.jwd39.LibraryManagement.models;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Genres {
+public class Genre {
     private int genre_id;
     private String genre_name;
     private Timestamp created_date,updated_date;
 
-    public Genres() {
+    public Genre() {
     }
 
-    public Genres(String genre_name) {
+    public Genre(String genre_name) {
         this.genre_name = genre_name;
     }
 
-    public Genres(int genre_id, String genre_name, Date created_date, Date updated_date) {
+    public Genre(int genre_id, String genre_name, Date created_date, Date updated_date) {
         this.genre_id = genre_id;
         this.genre_name = genre_name;
         this.created_date = (Timestamp) created_date;
         this.updated_date = (Timestamp) updated_date;
     }
 
-    public Genres(int genre_id, String genre_name) {
+    public Genre(int genre_id, String genre_name) {
         this.genre_id = genre_id;
         this.genre_name = genre_name;
     }
