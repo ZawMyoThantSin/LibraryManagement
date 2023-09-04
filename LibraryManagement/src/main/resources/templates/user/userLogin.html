@@ -14,9 +14,9 @@
             </div>
         </div>
         <form class="login-form" action="/user/login" method="post" >
-            <input type="text" placeholder="User Name" name="name" required/>
+            <input type="text" placeholder="Email" name="email" required/>
             <input type="password" placeholder="Password" name="password" required/>
-            <p style="color: red;font-size: 12px;" th:text="${message}"></p>
+            <p style="color: yellow;font-size: 12px;" th:text="${message}"></p>
             <button type="submit">login</button>
             <p class="message">Not registered? <a href="/user/registration">Create an account</a></p>
         </form>

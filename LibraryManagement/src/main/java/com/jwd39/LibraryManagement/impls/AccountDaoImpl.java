@@ -23,7 +23,7 @@ public class AccountDaoImpl implements AccountDao {
     public int save(Account account) {
         connection = DBHelper.getInstance().getCon();
         int status=0;
-        String query= "INSERT INTO accounts (username,password,email,role_id,created_date,updated_date) VALUES (?,?,?,?,CURDATE(),CURDATE())";
+        String query= "INSERT INTO accounts (username,password,email,role_id,created_date,updated_date) VALUES (?,MD5(?),?,?,CURDATE(),CURDATE())";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setNString(1, account.getUsername());
@@ -45,21 +45,21 @@ public class AccountDaoImpl implements AccountDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet set = statement.executeQuery();
 
-        while (set.next()) {
-            account = new Account(
-                    set.getInt("id"),
-                    set.getInt("role_id"),
-                    set.getNString("username"),
-                    set.getNString("password"),
-                    set.getNString("email"),
-                    set.getDate("created_date"),
-                    set.getDate("updated_date")
-            );
-            accounts.add(account);
-        }
-        } catch (SQLException e) {
-                e.printStackTrace();
+            while (set.next()) {
+                account = new Account(
+                        set.getInt("id"),
+                        set.getInt("role_id"),
+                        set.getNString("username"),
+                        set.getNString("password"),
+                        set.getNString("email"),
+                        set.getDate("created_date"),
+                        set.getDate("updated_date")
+                );
+                accounts.add(account);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return accounts;
     }
 
@@ -67,7 +67,7 @@ public class AccountDaoImpl implements AccountDao {
     public int update(Account account) {
         connection = DBHelper.getInstance().getCon();
         int status=0;
-        String query = "UPDATE accounts SET username=?,password=?,email=?,updated_date=CURDATE() WHERE id = ?;";
+        String query = "UPDATE accounts SET username=?,password=MD5(?),email=?,updated_date=CURDATE() WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setNString(1,account.getUsername());
@@ -108,29 +108,29 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account validate(String username,String password) {
-             connection = DBHelper.getInstance().getCon();
-            String query = "SELECT * FROM accounts WHERE username = ? AND password = ?";
-            try (
+        connection = DBHelper.getInstance().getCon();
+        String query = "SELECT * FROM accounts WHERE email = ? AND password = MD5(?)";
+        try (
                 PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, username);
-                statement.setString(2, password);
-                try (ResultSet rs = statement.executeQuery()) {
-                    if (rs.next()) {
-                        Account user = new Account();
-                        user.setId(rs.getInt("id"));
-                        user.setRole_id(rs.getInt("role_id"));
-                        user.setUsername(rs.getString("username"));
-                        user.setEmail(rs.getString("email"));
-                        user.setPassword(rs.getString("password"));
-                        user.setCreated_date(rs.getDate("created_date"));
-                        user.setUpdated_date(rs.getDate("updated_date"));
-                        return user;
-                    }
+            statement.setString(1, username);
+            statement.setString(2, password);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    Account user = new Account();
+                    user.setId(rs.getInt("id"));
+                    user.setRole_id(rs.getInt("role_id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setCreated_date(rs.getDate("created_date"));
+                    user.setUpdated_date(rs.getDate("updated_date"));
+                    return user;
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

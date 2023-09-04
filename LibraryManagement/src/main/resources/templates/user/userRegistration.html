@@ -66,7 +66,7 @@
         }
         #message{
             padding: 0 5px;
-            color: hotpink;
+            color: yellow;
             font-size: 14px;
         }
         .signin {
@@ -154,10 +154,10 @@
                 <input required="" placeholder="Password" type="password" class="input" id="password" name="password">
             </label>
             <label>
-                <input required="" placeholder="Confirm Password" type="password"  class="input" id="confirmPassword" oninput="checkPassword()">
+                <input required="" name="cfpassword" placeholder="Confirm Password" type="password"  class="input" id="confirmPassword" oninput="checkPassword()">
             </label>
-                <p id="message"></p>
-                <button class="submit">Register</button>
+                <p id="message" th:text="${register}"></p>
+                <button class="submit" id="confirm">Register</button>
                 <p class="signin">Already have an acount ? <a href="/">Signin</a> </p>
         </form>
 </div>
@@ -166,6 +166,7 @@
         var password = document.getElementById("password").value;
         var confirm_password = document.getElementById("confirmPassword").value;
         var message = document.getElementById("message");
+        var btn = document.getElementById("btn");
 
         if (password === confirm_password) {
             message.innerHTML="";

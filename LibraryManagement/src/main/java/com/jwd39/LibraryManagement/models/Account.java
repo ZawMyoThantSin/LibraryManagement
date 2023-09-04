@@ -1,7 +1,12 @@
 package com.jwd39.LibraryManagement.models;
 
 
+import com.jwd39.LibraryManagement.impls.AccountDaoImpl;
+import com.jwd39.LibraryManagement.services.AccountService;
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Account {

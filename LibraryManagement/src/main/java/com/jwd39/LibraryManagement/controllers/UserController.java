@@ -1,6 +1,5 @@
 package com.jwd39.LibraryManagement.controllers;
 
-import com.jwd39.LibraryManagement.helpers.MD5Helper;
 import com.jwd39.LibraryManagement.helpers.SHA_256Helper;
 import com.jwd39.LibraryManagement.models.Account;
 import com.jwd39.LibraryManagement.services.AccountService;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.SQLException;
-
 
 @Controller
 public class UserController {
@@ -23,48 +20,61 @@ public class UserController {
     private AccountService accountService;
 
     @GetMapping("/user/login")
-    public String userLogin(Model model){
-        model.addAttribute("title","Login");
+    public String userLogin(Model model) {
+        model.addAttribute("title", "Login");
         return "user/userLogin";
     }
 
     @PostMapping("/user/login")
-    public String userLogin(@RequestParam String name, String password,HttpSession session,Model model) throws SQLException {
-
-        Account user = accountService.validate(name,password);
-        if (user!=null){
+    public String userLogin(@RequestParam String email, String password, HttpSession session, Model model) {
+        //String pass = SHA_256Helper.encrypt(password);
+        String pass = password;
+        Account user = accountService.validate(email, pass);
+        if (user != null) {
             int roleId = user.getRole_id();
-            switch (roleId){
+            switch (roleId) {
                 case 1:
-                    session.setAttribute("admin",user);
-                    return "admin/adminHome";
+                    session.setAttribute("admin", user);
+                    return "redirect:/admin/home";
                 case 2:
-                    session.setAttribute("user",user);
-                    return "user/userView";
+                    session.setAttribute("user", user);
+                    return "redirect:/user/view";
             }
-        }else
-            model.addAttribute("message", "User Name and Password is Invalid!");
+        } else
+            model.addAttribute("message", "Your email or password is Invalid!");
         return "user/userLogin";
     }
 
     @GetMapping("/user/registration")
-    public String userCreate(Model model){
-        model.addAttribute("title","User Registration");
+    public String userCreate(Model model) {
+        model.addAttribute("title", "User Registration");
         return "user/userRegistration";
     }
 
     @PostMapping("/user/registration")
-    public String userCreate(@RequestParam String name,String email,String password,int roleId) {
-        Account user = new Account(name,email,password,roleId);
-        int status = accountService.save(user);
-        if(status==1){
-            return "user/userView";
+    public String userCreate(@RequestParam String name, String email, String password, String cfpassword, int roleId, Model model) {
+        Account user = new Account(name, email, password, roleId);
+        if (!cfpassword.equalsIgnoreCase(password)) {
+            model.addAttribute("register", "Your password does not match. Please try again !!!");
+            return "user/userRegistration";
+        } else {
+            boolean confirm = accountService.emailConfirm(user.getEmail());
+            if (confirm) {
+                model.addAttribute("register", "Your email is already existed!!!");
+                return "user/userRegistration";
+            } else {
+                int status = accountService.save(user);
+                if (status == 1) {
+                    return "redirect:/user/view";
+                } else {
+                    return "redirect:/user/registration";
+                }
+            }
         }
-        return "user/userRegistration";
     }
 
     @GetMapping("/user/view")
-    public String userViewScreen(){
+    public String userViewScreen() {
         return "user/userView";
     }
 
