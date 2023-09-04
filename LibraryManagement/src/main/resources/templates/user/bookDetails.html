@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(225, 235, 237);
+        }
+
+        .cardBg {
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #643843;
+            border-radius: 25px;
+
+        }
+
+        .rating-box {
+            position: relative;
+            padding: 25px 50px 35px;
+            box-shadow: 0 5px 18px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .rating-box header {
+            font-size: 22px;
+            color: #643843;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .rating-box .stars {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .stars i {
+            color: #6e6e6e;
+            font-size: 35px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .stars i.active {
+            color: #643843;
+        }
+
+        /*pop up rate box*/
+        .modal {
+            width: 100%;
+            height: 100%;
+            padding-top: 400px;
+            /* Location of the box */
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            overflow: auto;
+            /* Enable scroll if needed */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #ebe7e7;
+            color: #181717;
+            margin: auto;
+            padding: 20px;
+            width: 25%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #000;
+            float: right;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #aaa;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container bookDetails shadow-sm" style="background-color: #f3f6f7; height: 100vh;">
+    <a href="/userView.html"><i class="fa-solid fa-arrow-left mt-3" style="font-size: 30px; color: #74bac9;"></i></a>
+    <div class="containerimgAndHeader mb-4 mt-3">
+        <h3 class="text-center"><strong>Book Details</strong></h3>
+    </div>
+    <div class="container row">
+        <div class="col-sm-5">
+            <img src="/need/Himg1.jpg" alt="photo" class="w-50 float-right rounded">
+        </div>
+        <div class="col-sm-5 mt-4">
+            <h4>ငါ့အလင်းတံခါးမှာ ဖယောင်းတိုင်ထွန်းထားတယ်</h4>
+            <h5 class="mt-3">သိုးဆောင်း</h5>
+            <p class="mt-3"><em><strong>4.5 </strong><i class="fa-solid fa-heart text-danger h4"></i></em>
+            </p>
+            <button class="btn btn-outline-primary mt-3">Read <i class="fa-solid fa-book-open-reader"></i></button>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="m-5">
+            <h4 class="d-inline ml-4">Preview this book</h4>
+            <button class="btn btn-outline-primary float-right mr-4" id="myBtn">rate <i class="fa-solid fa-heart"></i></button>
+            <dd class="container mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, omnis molestias, quo
+                quibusdam
+                maiores harum nulla doloribus nisi velit reiciendis numquam. Facere sunt eius earum atque hic rem aut ea
+                perspiciatis officia facilis sit sint eos soluta vero magnam exercitationem laudantium expedita, quibusdam sed
+                odio est quae. Eos, vero quosLorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, omnis molestias, quo
+                quibusdam maiores harum nulla doloribus nisi velit reiciendis numquam. Facere sunt eius earum atque hic rem aut
+                ea perspiciatis officia facilis sit sint eos soluta vero magnam exercitationem laudantium expedita, quibusdam
+                sed odio est quae. Eos, vero quos.</dd>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="cardBg modal" id="myModal">
+    <div class="rating-box modal-content">
+      <span class="close">&times;</span>
+      <header>How was your experience?</header>
+      <div class="stars">
+        <i class="fa-solid fa-star submit_star"></i>
+        <i class="fa-solid fa-star submit_star"></i>
+        <i class="fa-solid fa-star submit_star"></i>
+        <i class="fa-solid fa-star submit_star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <button class="btn btn-primary mt-3" id="averageRating">Submit</button>
+    </div>
+  </div> -->
+
+
+<!--
+  <nav class="navbar navbar-default">
+    <div class="continer-fluid">
+      <a class="navbar-brand" href="https://sourcecodester.com" target="_blank">Sourcecodester</a>
+    </div>
+  </nav>
+  <div class="col-md-3"></div>
+  <div class="col-md-6 well">
+    <h3 class="text-primary">JavaScript - Simple Star Rating</h3>
+    <hr style="border-top:1px dotted #ccc;" />
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div>
+        <h3 class="text-white">Rating:</h3>
+        <span id="1" style="font-size:45px; cursor:pointer;" class="fa fa-star" onmouseover="startRating(this)"
+          startRating="starmark(this)"></span>
+        <span id="2" style="font-size:45px; cursor:pointer;" class="fa fa-star" onmouseover="startRating(this)"
+          startRating="starmark(this)"></span>
+        <span id="3" style="font-size:45px; cursor:pointer;" class="fa fa-star" onmouseover="startRating(this)"
+          startRating="starmark(this)"></span>
+        <span id="4" style="font-size:45px; cursor:pointer;" class="fa fa-star" onmouseover="startRating(this)"
+          startRating="starmark(this)"></span>
+        <span id="5" style="font-size:45px; cursor:pointer;" class="fa fa-star" onmouseover="startRating(this)"
+          startRating="starmark(this)"></span>
+      </div>
+      <br />
+      <div class="form-group">
+        <h3>Review:</h3>
+        <textarea id="review" class="form-control text-white" style="resize:none; height:100px;"></textarea>
+      </div>
+      <center><button class="btn btn-success" onclick="result()">SUBMIT</button></center>
+      <div id="result"></div>
+    </div>
+  </div> -->
+
+<script>
+    var count = 0;
+
+    function result() {
+        if (count != 0) {
+            document.getElementById('result').innerHTML =
+                "<h4>Rating: <label class='text-primary'>" + count + "</label></h4>"
+                + "<h4>Review</h4>"
+                + "<p>" + document.getElementById("review").value + "</p>";
+        } else {
+
+        }
+        return count;
+    }
+
+    function startRating(item) {
+        count = item.id[0];
+        sessionStorage.star = count;
+        for (var i = 0; i < 5; i++) {
+            if (i < count) {
+                document.getElementById((i + 1)).style.color = "yellow";
+            }
+            else {
+                document.getElementById((i + 1)).style.color = "black";
+            }
+        }
+    }
+
+
+</script>
+
+<!-- <script>
+  //rating stars
+  const stars = document.querySelectorAll(".stars i");
+
+  stars.forEach((star, index1) => {
+    star.addEventListener("click", () => {
+      stars.forEach((star, index2) => {
+        if (index1 === index2 && star.classList.contains("active")) {
+          star.classList.remove("active");
+        } else {
+          index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+        }
+      });
+    });
+  });
+
+
+  //pop up rate box
+  var modal = document.getElementById("myModal");
+  var btn = document.getElementById("myBtn");
+  var span = document.getElementsByClassName("close")[0];
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Submit rating using AJAX
+  $("#submitRating").click(function () {
+    var ratingValue = $(".stars .active").length;
+
+    // AJAX request to submit rating
+    $.post("/items/{itemId}/rate", { ratingValue: ratingValue })
+      .done(function (averageRating) {
+        $("#averageRating").text(averageRating);
+        modal.style.display = "none"; // Close the modal
+      })
+      .fail(function () {
+        alert("Failed to submit rating.");
+      });
+  });
+</script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

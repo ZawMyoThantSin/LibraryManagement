@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;1,7..72,200;1,7..72,300&family=Roboto:wght@300&display=swap"
+            rel="stylesheet">
+    <title>Document</title>
+
+    <style>
+        * {
+            font-family: 'Literata', serif;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /*side nav in user view*/
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 5;
+            right: 0;
+            background-color: #f8fbfb;
+            overflow-x: hidden;
+            transition: 0.5s ease-in-out;
+            padding-top: 50px;
+            text-align: left;
+
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 8px;
+            margin-left: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            color: #0d0d0d;
+            display: block;
+            transition: 0.3s ease;
+        }
+
+        .sidenav a:hover {
+            color: #4c8c9c;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 36px;
+            margin-left: 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        .nav .nav-item a:hover {
+            text-decoration-line: underline;
+        }
+
+        .cc :hover {
+            border-radius: 30px;
+            transition: .4s;
+        }
+    </style>
+</head>
+
+<body>
+<div class="mt-2 shadow-sm rounded bigSection " style="background-color: rgb(234, 248, 248);">
+
+    <!--nav section-->
+    <div class="navSection">
+        <nav class="navbar navbar-light justify-content-between border-outline-secondary ">
+
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <img src="/images/book.png" width="50" height="50">
+                    <span class="text-warning">Web</span> <span class="text-dark"><strong>Books</strong></span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/user/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Contact Us</a>
+                    </li>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+
+                        </div>
+                    </form>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+    <!--books section-->
+    <div class="booksSection container shadow rounded" style="background-color: aliceblue;">
+
+        <!-- new released -->
+        <div class="newReleased">
+            <div class="ml-5">
+                <div class="d-flex justify-content-between">
+
+                    <h2 class="mt-3">New released Books</h2>
+
+                    <div class="menuIcon mt-3">
+              <span style="font-size:20px;cursor:pointer" onclick="openNav()"><span class="text-warning">Books
+                  Menu</span> &#9776;</span>
+
+                        <!--side bar-->
+                        <div id="mySidenav" class="sidenav shadow">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <a href="#" class="text-dark h5"> <i class="fa-solid fa-house "></i> All</a>
+                            <a href="#newReleased"> <i class="fa-solid fa-book"></i> Latest Books List</a>
+                            <a href="#mostReadBooks"> <i class="fa-solid fa-book-open-reader"></i> Most Rated Books List</a>
+                            <a href="#"> <i class="fa-solid fa-heart"></i> Favourite</a>
+                            <a href="#"> <i class="fa-solid fa-download"></i> Downloaded Books List</a>
+                            <br>
+                            <p class="text-dark h5 ml-4"><i class="fa-solid fa-book-open"></i> Genres</p>
+                            <a href="#business"> <i class="fa-solid fa-business-time"></i> Business</a>
+                            <a href="#comedy"><i class="fa-regular fa-face-laugh-squint"></i> Comedy</a>
+                            <a href="#education"><i class="fa-solid fa-school"></i> Education</a>
+                            <a href="#ghost"><i class="fa-solid fa-ghost"></i> Ghost</a>
+                            <a href="#health"><i class="fa-solid fa-user-doctor"></i> Health</a>
+                            <a href="#travel"><i class="fa-solid fa-plane-departure"></i> Travel</a>
+                            <a href="#story"><i class="fa-solid fa-person-breastfeeding"></i> Story</a>
+                            <a href="#motivation"><i class="fa-solid fa-person-arrow-up-from-line"></i> Motivation</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--card image-->
+        <div class="row container center m-auto" id="newReleased">
+            <div class="col-md-3 mt-3 h-25 cc" th:each="books: ${books}">
+                <div class="card border border-0 shadow-sm p-2  align-items-center" >
+                    <img th:src="@{/uploads/{bookname}/{imagename} (bookname=${books.bookName},imagename=${books.imageName})}"
+                         class="w-75 mb-2" alt="...">
+                    <div class="text-dark">
+                        <p class="h5 d-inline" th:text="${books.bookName}"></p>
+                        <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                        </small>
+                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3 h-25 cc">
+                <div class="card border border-0 shadow-sm p-2  align-items-center">
+                    <img src="/images/Himg4.jpg" class="w-75 mb-2" alt="...">
+                    <div class="text-dark">
+                        <p class="h5 d-inline">Book Name</p>
+                        <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                        </small>
+                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3 h-25 cc">
+                <div class="card border border-0 shadow-sm p-2  align-items-center">
+                    <img src="/images/Himg4.jpg" class="w-75 mb-2" alt="...">
+                    <div class="text-dark">
+                        <p class="h5 d-inline">Book Name</p>
+                        <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                        </small>
+                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3 h-25 cc">
+                <div class="card border border-0 shadow-sm p-2  align-items-center">
+                    <img src="/images/Himg4.jpg" class="w-75 mb-2" alt="...">
+                    <div class="text-dark">
+                        <p class="h5 d-inline">Book Name</p>
+                        <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                        </small>
+                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3 h-25 cc">
+                <div class="card border border-0 shadow-sm p-2  align-items-center">
+                    <img src="/images/Himg4.jpg" class="w-75 mb-2" alt="...">
+                    <div class="text-dark">
+                        <p class="h5 d-inline">Book Name</p>
+                        <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                        </small>
+                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Most Read books -->
+        <div class="mostReadBooks mt-5 container" id="mostReadBooks">
+            <h2 class="ml-5">Most Read Books</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/images/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/images/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/images/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business -->
+        <div class="business mt-5 container" id="business">
+            <h2 class="ml-5">Business</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- comedy -->
+        <div class="comedu mt-5 container" id="comedy">
+            <h2 class="ml-5">Comedy</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- education -->
+        <div class="education mt-5 container" id="education">
+            <h2 class="ml-5">Education</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ghost -->
+        <div class="ghost mt-5 container" id="ghost">
+            <h2 class="ml-5">Ghost</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- health -->
+        <div class="health mt-5 container" id="health">
+            <h2 class="ml-5">Health</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- travel -->
+        <div class="travel mt-5 container" id="travel">
+            <h2 class="ml-5">Travel</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- story -->
+        <div class="story mt-5 container" id="story">
+            <h2 class="ml-5">Stories</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- motivation -->
+        <div class="motivation mt-5 container" id="motivation">
+            <h2 class="ml-5">Motivation</h2>
+            <div class="row container center m-auto">
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3 h-25">
+                    <div class="card border border-0 shadow-sm p-2  align-items-center">
+                        <img src="/need/Himg3.png" class="w-75 mb-2" alt="...">
+                        <div class="text-dark">
+                            <p class="h5 d-inline">Book Name</p>
+                            <small class="ml-3">4.5 <i class="fa fa-star"></i>
+                            </small>
+                            <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    // sidenav
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "15%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
