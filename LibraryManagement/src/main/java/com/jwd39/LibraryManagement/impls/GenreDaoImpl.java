@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class GenreImpl implements GenreDao {
+public class GenreDaoImpl implements GenreDao {
     private Connection connection;
     private Genre genre;
 
@@ -23,7 +23,7 @@ public class GenreImpl implements GenreDao {
     public int save(Genre genre) {
         connection = DBHelper.getInstance().getCon();
         int status =0;
-        String query="INSERT INTO library.genres (genre_name) VALUE (?)";
+        String query="INSERT INTO genres (genre_name,created_date,updated_date) VALUES (?,CURRENT_DATE,CURRENT_DATE)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,genre.getGenre_name());
@@ -43,6 +43,7 @@ public class GenreImpl implements GenreDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet rs=statement.executeQuery();
             while (rs.next()){
+                genre = new Genre();
                 genre.setGenre_id(rs.getInt("genre_id"));
                 genre.setGenre_name(rs.getString("genre_name"));
                 genres.add(genre);
@@ -66,5 +67,23 @@ public class GenreImpl implements GenreDao {
             e.printStackTrace();
         }
         return status;
+    }
+
+    @Override
+    public Genre findById(int id) {
+        connection = DBHelper.getInstance().getCon();
+        String query = "SELECT * FROM genres WHERE id =?";
+        ResultSet set;
+        try {
+            PreparedStatement statement= connection.prepareStatement(query);
+            set = statement.executeQuery();
+            while (set.next()){
+                genre.setGenre_id(set.getInt("genre_id"));
+                genre.setGenre_name(set.getString("genre_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return genre;
     }
 }

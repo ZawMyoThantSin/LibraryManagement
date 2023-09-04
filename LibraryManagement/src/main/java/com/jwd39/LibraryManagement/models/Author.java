@@ -11,12 +11,12 @@ public class Author {
     public Author() {
     }
 
-    public Author(int id, String author_name, int is_delete, Date created_date, Date updated_date) {
+    public Author(int id, String author_name,Date created_date, Date updated_date,int is_delete) {
         this.id = id;
         this.author_name = author_name;
-        this.is_delete = is_delete;
         this.created_date = created_date;
         this.updated_date = updated_date;
+        this.is_delete = is_delete;
     }
 
     public Author(String author_name, int is_delete, Date created_date, Date updated_date) {

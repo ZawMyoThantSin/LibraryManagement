@@ -1,7 +1,6 @@
 package com.jwd39.LibraryManagement.models;
 
-import java.util.Date;
-
+import java.sql.Date;
 
 public class Account {
 
@@ -46,6 +45,14 @@ public class Account {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Account(int id, int role_id, String username, String email, Date created_date) {
+        this.id = id;
+        this.role_id = role_id;
+        this.username = username;
+        this.email = email;
+        this.created_date = created_date;
     }
 
     public int getId() {

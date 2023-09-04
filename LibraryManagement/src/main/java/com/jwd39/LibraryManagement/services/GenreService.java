@@ -25,4 +25,7 @@ public class GenreService {
     public int delete(int id){
         return genreDao.delete(id);
     }
+    public Genre findById(int id){
+        return genreDao.findById(id);
+    }
 }
