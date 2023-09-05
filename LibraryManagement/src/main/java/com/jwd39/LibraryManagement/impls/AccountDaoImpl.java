@@ -45,21 +45,21 @@ public class AccountDaoImpl implements AccountDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet set = statement.executeQuery();
 
-            while (set.next()) {
-                account = new Account(
-                        set.getInt("id"),
-                        set.getInt("role_id"),
-                        set.getNString("username"),
-                        set.getNString("password"),
-                        set.getNString("email"),
-                        set.getDate("created_date"),
-                        set.getDate("updated_date")
-                );
-                accounts.add(account);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (set.next()) {
+            account = new Account(
+                    set.getInt("id"),
+                    set.getInt("role_id"),
+                    set.getNString("username"),
+                    set.getNString("password"),
+                    set.getNString("email"),
+                    set.getDate("created_date"),
+                    set.getDate("updated_date")
+            );
+            accounts.add(account);
         }
+        } catch (SQLException e) {
+                e.printStackTrace();
+            }
         return accounts;
     }
 
@@ -82,7 +82,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account getById(int id) {
+    public Account findById(int id) {
         connection = DBHelper.getInstance().getCon();
         String query = "SELECT * FROM accounts WHERE id = ?;";
         try {
@@ -107,12 +107,27 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account validate(String username,String password) {
+    public int disable(int id) {
+        int status=0;
+        String query = "DELETE FROM accounts WHERE id = ?";
+        connection = DBHelper.getInstance().getCon();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,id);
+            status= statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    @Override
+    public Account validate(String email,String password) {
         connection = DBHelper.getInstance().getCon();
         String query = "SELECT * FROM accounts WHERE email = ? AND password = MD5(?)";
         try (
                 PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, username);
+            statement.setString(1, email);
             statement.setString(2, password);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {

@@ -66,7 +66,7 @@
         }
         #message{
             padding: 0 5px;
-            color: yellow;
+            color: hotpink;
             font-size: 14px;
         }
         .signin {
@@ -118,7 +118,7 @@
             border-radius: 10px;
             color: #fff;
             font-size: 16px;
-            transform: .3s ease;
+            transform: 0.3s ease-in;
         }
 
         .submit:hover {
@@ -142,37 +142,46 @@
 <div class="container mt-5">
     <form class="user-form center m-auto" th:action="@{'/user/registration'}" method="post">
         <p class="title">Register </p>
-            <label>
-                <input required="" placeholder="User Name" type="text" class="input" name="name">
-            </label>
+        <label>
+            <input required="" placeholder="User Name" type="text" class="input" name="name">
+        </label>
 
-            <label>
-                <input required="" placeholder="Email" type="email" class="input" name="email">
-               <input type="hidden" name="roleId" value="2">
-            </label>
-            <label>
-                <input required="" placeholder="Password" type="password" class="input" id="password" name="password">
-            </label>
-            <label>
-                <input required="" name="cfpassword" placeholder="Confirm Password" type="password"  class="input" id="confirmPassword" oninput="checkPassword()">
-            </label>
-                <p id="message" th:text="${register}"></p>
-                <button class="submit" id="confirm">Register</button>
-                <p class="signin">Already have an acount ? <a href="/">Signin</a> </p>
+        <label>
+            <input required="" placeholder="Email" type="email" class="input" name="email">
+            <input type="hidden" name="roleId" value="2">
+        </label>
+        <label>
+            <input required="" placeholder="Password" type="password" class="input" id="password" name="password">
+        </label>
+        <label>
+            <input required="" name="cfpassword" placeholder="Confirm Password" type="password"  class="input" id="confirmPassword" oninput="checkPassword()">
+        </label>
+                <p id="message" th:text="${message}"></p>
+                <button id="submitButton" class="submit">Register</button>
+                <p class="signin">Already have an account ? <a href="/">SignIn</a> </p>
         </form>
 </div>
 <script>
     function checkPassword() {
-        var password = document.getElementById("password").value;
-        var confirm_password = document.getElementById("confirmPassword").value;
-        var message = document.getElementById("message");
-        var btn = document.getElementById("btn");
+        const password = document.getElementById("password").value;
+        const confirm_password = document.getElementById("confirmPassword").value;
+        const message = document.getElementById("message");
+        const submitBtn = document.getElementById("submitButton");
 
         if (password === confirm_password) {
-            message.innerHTML="";
+            message.innerHTML = "";
+            if(password.length<8){
+                message.innerHTML="Password must be at least 8 characters";
+                submitBtn.disabled = true;
+            }else{
+                message.innerHTML =" ";
+                submitBtn.disabled = false;
+            }
         } else {
+            submitBtn.disabled = true;
             message.innerHTML = "Passwords do not match. Please try again.";
         }
+
     }
 </script>
 

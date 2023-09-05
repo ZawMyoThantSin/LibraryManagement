@@ -1,19 +1,23 @@
 package com.jwd39.LibraryManagement.daos;
 
-import com.jwd39.LibraryManagement.models.Book;
+import com.jwd39.LibraryManagement.models.BookDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public interface BookDao {
-    int save(Book book);
+    int save(BookDetails book);
 
-    int update(Book book);
+    int update(BookDetails book);
 
-    List<Book> getAll();
+    List<BookDetails> getAll();
 
-    Book getById(int id);
+    BookDetails findById(int id);
+
+    int disable(int id);
+
+    int restore(int id);
 
     int delete(int id);
 

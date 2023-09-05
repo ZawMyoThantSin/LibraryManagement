@@ -15,9 +15,11 @@ public interface AccountDao {
 
     int update(Account account);
 
-    Account getById(int id);
+    Account findById(int id);
+
+    int disable(int id);
 
     int delete(int id);
 
-    Account validate(String username,String password);
+    Account validate(String email,String password);
 }

@@ -13,4 +13,5 @@ public interface GenreDao {
 
     int delete(int id);
 
+    Genre findById(int id);
 }

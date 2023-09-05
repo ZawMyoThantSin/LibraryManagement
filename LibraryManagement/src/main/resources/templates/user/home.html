@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master::header">
+    <title th:text="${title}"></title>
+</head>
+
+<style>
+    .home {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(12, 10, 10, 0.7), rgba(14, 10, 10, 0.7)), url("/images/libraryBg.jpg");
+        background-position: center;
+        background-size: cover;
+    }
+    /* learn more button */
+    button {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        background: transparent;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+
+    button.learn-more {
+        width: 12rem;
+        height: auto;
+    }
+
+    button.learn-more .circle {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: relative;
+        display: block;
+        margin: 0;
+        width: 3rem;
+        height: 3rem;
+        background: #7e6c0e;
+        border-radius: 1.625rem;
+    }
+
+    button.learn-more .circle .icon {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #fff;
+    }
+
+    button.learn-more .circle .icon.arrow {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        left: 0.625rem;
+        width: 1.125rem;
+        height: 0.125rem;
+        background: none;
+    }
+
+    button.learn-more .circle .icon.arrow::before {
+        position: absolute;
+        content: "";
+        top: -0.29rem;
+        right: 0.0625rem;
+        width: 0.625rem;
+        height: 0.625rem;
+        border-top: 0.125rem solid #bfc279;
+    ;
+        border-right: 0.125rem solid #bfc279;
+        transform: rotate(45deg);
+    }
+
+    button.learn-more .button-text {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0;
+        margin: 0 0 0 1.85rem;
+        color: #edf107;
+        font-weight: 700;
+        line-height: 1.6;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    button:hover .circle {
+        width: 100%;
+    }
+
+    button:hover .circle .icon.arrow {
+        background: #bfc279;
+        transform: translate(1rem, 0);
+    }
+
+    button:hover .button-text {
+        color: #edf107;
+    ;
+    }
+
+    /*side nav in user view*/
+    #mySidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 50px;
+        right: 0;
+        background-color: #f8fbfb;
+        overflow-x: hidden;
+        transition: 0.5s ease-in-out;
+        padding-top: 60px;
+        text-align: left;
+
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 8px;
+        margin-left: 10px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #0d0d0d;
+        display: block;
+        transition: 0.3s ease;
+    }
+
+    .sidenav a:hover {
+        color: #4c8c9c;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 36px;
+        margin-left: 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+
+    .nav .nav-item a:hover {
+        text-decoration-line: underline;
+    }
+
+    .cc :hover {
+        border-radius: 30px;
+        transition: .4s;
+    }
+
+</style>
+<body>
+
+<div class="body">
+    <div class="home">
+        <nav class="navbar navbar-light justify-content-between border-outline-secondary">
+
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <img src="/images/book.png" width="50" height="50">
+                    <span class="text-warning">Web</span> <span class="text-white"><strong>Books</strong></span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active  text-white" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-white" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-white" href="#">Contact Us</a>
+                    </li>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+
+                        </div>
+                        <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="text-warning ml-3"> &#9776;</span>
+
+                    </form>
+                </ul>
+
+            </div>
+        </nav>
+        <!--home page-->
+        <div class="d-flex justify-content-around mt-5" style="height: 65vh; width: 100%;">
+            <!-- home text -->
+            <div class="text-white justify-content-center-align-items-center mt-5 p-5">
+                <h1 class="display-4 text-monospace anim-typewriter mt-5 mb-2">There is no <strong>Friend</strong> </br>
+                    as <strong>Loyal</strong> as a
+                    <strong>Book.</strong>
+                </h1>
+                <br>
+                <p class="h5">-ERNEST HEMINGWAY</p>
+                <button class="learn-more" onclick="location.href='/showbooks'" >
+                    <span class="circle" aria-hidden="true">
+                     <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Learn More</span>
+                </button>
+            </div>
+            <!-- home 4 books -->
+            <div class="p-4 d-flex justify-content-around">
+                <img src="/images/Himg1.jpg" class="shadow-lg m-4 " alt="" width="200px" height="270px">
+                <img src="/images/Himg2.png" class="shadow-lg m-4" alt="" width="200px" height="270px">
+            </div>
+        </div>
+    </div>
+    <div class="menuIcon mt-3">
+
+        <!--side bar-->
+        <div id="mySidenav" class="sidenav shadow">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" class="text-dark h5"> <i class="fa-solid fa-house "></i> All</a>
+            <a href="#newReleased"> <i class="fa-solid fa-book"></i> Latest Books List</a>
+            <a href="#mostReadBooks"> <i class="fa-solid fa-book-open-reader"></i> Most Rated Books List</a>
+            <a href="#"> <i class="fa-solid fa-heart"></i> Favourite</a>
+            <a href="#"> <i class="fa-solid fa-download"></i> Downloaded Books List</a>
+            <br>
+            <p class="text-dark h5 ml-4"><i class="fa-solid fa-book-open"></i> Genres</p>
+            <a href="#business"> <i class="fa-solid fa-business-time"></i> Business</a>
+            <a href="#comedy"><i class="fa-regular fa-face-laugh-squint"></i> Comedy</a>
+            <a href="#education"><i class="fa-solid fa-school"></i> Education</a>
+            <a href="#ghost"><i class="fa-solid fa-ghost"></i> Ghost</a>
+            <a href="#health"><i class="fa-solid fa-user-doctor"></i> Health</a>
+            <a href="#travel"><i class="fa-solid fa-plane-departure"></i> Travel</a>
+            <a href="#story"><i class="fa-solid fa-person-breastfeeding"></i> Story</a>
+            <a href="#motivation"><i class="fa-solid fa-person-arrow-up-from-line"></i> Motivation</a>
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "15%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+<div th:replace="master::footer"></div>
+</body>
+
+</html>
