@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
-    <title>Trash</title>
+    <title>Update Book</title>
     <style>
         * {
             font-family: 'Literata', serif;
@@ -118,49 +118,47 @@
             </div>
         </div>
         <div class="col-sm-10 " style="background-color: rgb(235, 244, 247);">
-                <form class="bookFormBody col-md-6 offset-md-3 mt-3" style="background:rgb(237, 246, 250);"
-                      th:action="@{/create/book}" method="post" enctype="multipart/form-data" >
-                    <h2 class="text-center mt-3">Create Book</h2>
-
-                    <div class="pl-3 pr-3 pb-3 mt-4">
-
-                        <div class="form-group">
-                            <label for="bookName">Book Name</label>
-                            <input type="text" class="form-control inputs" id="bookName" name="bookName">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="authorName">Author Name</label>
-                            <select class="custom-select inputs" id="authorName"  required name="author_id" >
-                                <option selected disabled value="1" >Choose Authors</option>
-                                <option th:each="authors : ${authors}" th:value="${authors.id}" th:text="${authors.author_name}"></option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="genreName">Genres Name</label>
-                            <select class="custom-select inputs" id="genreName"   required  name="genre_id" >
-                                <option selected disabled value="1">Choose Genre</option>
-                                <option th:each="genres : ${genres}"  th:value="${genres.genre_id}" th:text="${genres.genre_name}"></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="description">Book Descriptions</label>
-                            <textarea class="form-control inputs" id="description" name="description" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="coverImage">Book Cover Image</label>
-                            <input class="form-control inputs p-1 pl-3" type="file" id="coverImage" name="coverImage" accept="image/*">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="bookFile">Book PDF File</label>
-                            <input class="form-control inputs p-1 pl-3" type="file" id="bookFile" name="bookFile" accept="application/pdf">
-                        </div>
-                        <button type="submit" class="btn btn-warning m-auto bookFormButton" >Submit</button>
+            <form class="bookFormBody col-md-6 offset-md-3 mt-3" style="background:rgb(237, 246, 250);"
+                  th:action="@{/book/update/{book_id}}" method="post" enctype="multipart/form-data"  th:object="${book}">
+                <h2 class="text-center mt-3">Update Book</h2>
+                <div class="pl-3 pr-3 pb-3 mt-4">
+                    <div class="form-group">
+                        <label for="bookName" >Book Name</label>
+                        <input type="text" class="form-control inputs" id="bookName" name="bookName"  th:value="*{bookName}">
                     </div>
-                </form>
+
+                    <div class="form-group mb-4">
+                        <label for="authorName">Author Name</label>
+                        <select class="custom-select inputs" id="authorName"  required name="author_id" >
+                            <option selected disabled th:value="*{authorId}" th:text="*{authorName}"></option>
+                            <option th:each="authors : ${authors}" th:value="${authors.id}" th:text="${authors.author_name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="genreName">Genres Name</label>
+                        <select class="custom-select inputs" id="genreName"   required  name="genre_id" >
+                            <option selected disabled th:value="*{genreId}" th:text="*{genreName}"></option>
+                            <option th:each="genres : ${genres}"  th:value="${genres.genre_id}" th:text="${genres.genre_name}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="description">Book Descriptions</label>
+                        <textarea class="form-control inputs" id="description" th:text="*{description}" name="description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="coverImage">Book Cover Image</label>
+                        <input class="form-control inputs p-1 pl-3" type="file" id="coverImage" name="coverImage" th: accept="image/*">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="bookFile">Book PDF File</label>
+                        <input class="form-control inputs p-1 pl-3" type="file" id="bookFile" name="bookFile" accept="application/pdf">
+                    </div>
+                    <button type="submit" class="btn btn-warning m-auto bookFormButton" >Submit</button>
+                </div>
+            </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"

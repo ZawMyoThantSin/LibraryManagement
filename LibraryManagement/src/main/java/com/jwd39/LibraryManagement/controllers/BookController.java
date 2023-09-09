@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +28,14 @@ public class BookController {
     private AuthorService authorService;
     @Autowired
     private GenreService genreService;
+
+    @GetMapping("/showbooks")
+    public String showAllBooks(Model model){
+        List<BookDetails> books = bookService.getAll();
+
+        model.addAttribute("books",books);
+        return "user/showBooks";
+    }
 
     @GetMapping("/create/book")
     public String createBooks(Model model){
@@ -63,6 +72,14 @@ public class BookController {
         return "admin/createBook";
     }
 
+    @GetMapping("/book/details/{book_id}")
+    public String detailPage(@PathVariable int book_id,Model model){
+        BookDetails book = bookService.findById(book_id);
+
+        model.addAttribute("book", book);
+        return "user/bookDetails";
+    }
+
     @GetMapping("/book/delete/{book_id}")
     public String deleteBook(@PathVariable int book_id) {
         BookDetails book = bookService.findById(book_id);
@@ -82,5 +99,22 @@ public class BookController {
         } else {
             return "errorPage";
         }
+    }
+
+    @GetMapping("/book/edit/{book_id}")
+    public String editBook(@PathVariable int book_id, Model model){
+        BookDetails book = bookService.findById(book_id);
+        List<Author> authors = authorService.getAll();
+        List<Genre> genres = genreService.getAll();
+
+        model.addAttribute("authors",authors);
+        model.addAttribute("genres",genres);
+        model.addAttribute("book",book);
+        return "admin/updateBook";
+    }
+
+    @PostMapping("/book/update/{book_id}")
+    public String updateBook(){
+        return "null";
     }
 }

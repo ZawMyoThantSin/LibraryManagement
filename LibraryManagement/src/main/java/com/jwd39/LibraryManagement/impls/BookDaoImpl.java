@@ -138,6 +138,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public int restoreAll() {
+        return 0;
+    }
+
+    @Override
     public int restore(int id) {
         connection = DBHelper.getInstance().getCon();
         int status=0;

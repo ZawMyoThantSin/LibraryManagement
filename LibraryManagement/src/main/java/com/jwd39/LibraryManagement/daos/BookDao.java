@@ -17,6 +17,8 @@ public interface BookDao {
 
     int disable(int id);
 
+    int restoreAll();
+
     int restore(int id);
 
     int delete(int id);

@@ -39,10 +39,8 @@ public class UserController {
 
     @GetMapping("/user/registration")
     public String userCreate(Model model){
-        Account account = new Account();
 
         model.addAttribute("title","Registration");
-        model.addAttribute("account",account);
         return "user/userRegistration";
     }
 

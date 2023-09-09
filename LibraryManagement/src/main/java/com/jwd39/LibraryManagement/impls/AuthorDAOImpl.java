@@ -22,7 +22,7 @@ public class AuthorDAOImpl implements AuthorDAO {
     public int save(Author author) {
         int status =0;
         connection = DBHelper.getInstance().getCon();
-        String query = "INSERT INTO authors(author_name,created_date,updated_date,is_delete) VALUES(?,CURDATE(),CURDATE(),0)";
+        String query = "INSERT INTO authors(authorname,created_date,updated_date,is_delete) VALUES(?,CURDATE(),CURDATE(),0)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,author.getAuthor_name());

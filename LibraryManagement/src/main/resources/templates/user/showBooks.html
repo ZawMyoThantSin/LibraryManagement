@@ -164,7 +164,7 @@
                         <p class="h5 d-inline" th:text="${books.bookName}"></p>
                         <small class="ml-3">4.5 <i class="fa fa-star"></i>
                         </small>
-                        <a href="#" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
+                        <a th:href="@{/book/details/{book_id} (book_id=${books.bookId})}" class="d-block mt-2 stretched-link">Details <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,8 @@ public class Author {
     private String author_name;
     private Date created_date,updated_date;
 
-    public Author() {
+    public Author(String author_name) {
+        this.author_name = author_name;
     }
 
     public Author(int id, String author_name,Date created_date, Date updated_date,int is_delete) {

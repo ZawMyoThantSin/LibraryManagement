@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{master::header}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-
-    <title>Document</title>
+    <title>Details</title>
     <style>
         body {
             background-color: rgb(225, 235, 237);
@@ -98,17 +97,17 @@
 
 <body>
 <div class="container bookDetails shadow-sm" style="background-color: #f3f6f7; height: 100vh;">
-    <a href="/userView.html"><i class="fa-solid fa-arrow-left mt-3" style="font-size: 30px; color: #74bac9;"></i></a>
+    <a href="/showbooks"><i class="fa-solid fa-arrow-left mt-3" style="font-size: 30px; color: #74bac9;"></i></a>
     <div class="containerimgAndHeader mb-4 mt-3">
         <h3 class="text-center"><strong>Book Details</strong></h3>
     </div>
-    <div class="container row">
+    <div class="container row" th:object="${book}">
         <div class="col-sm-5">
-            <img src="/need/Himg1.jpg" alt="photo" class="w-50 float-right rounded">
+            <img th:src="@{/uploads/{bookname}/{imagename} (bookname=*{bookName},imagename=*{imageName})}" alt="photo" class="w-50 float-right rounded">
         </div>
         <div class="col-sm-5 mt-4">
-            <h4>ငါ့အလင်းတံခါးမှာ ဖယောင်းတိုင်ထွန်းထားတယ်</h4>
-            <h5 class="mt-3">သိုးဆောင်း</h5>
+            <h4 th:text="${book.bookName}"></h4>
+            <h5 class="mt-3" th:text="${book.authorName}"></h5>
             <p class="mt-3"><em><strong>4.5 </strong><i class="fa-solid fa-heart text-danger h4"></i></em>
             </p>
             <button class="btn btn-outline-primary mt-3">Read <i class="fa-solid fa-book-open-reader"></i></button>
@@ -119,14 +118,7 @@
         <div class="m-5">
             <h4 class="d-inline ml-4">Preview this book</h4>
             <button class="btn btn-outline-primary float-right mr-4" id="myBtn">rate <i class="fa-solid fa-heart"></i></button>
-            <dd class="container mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, omnis molestias, quo
-                quibusdam
-                maiores harum nulla doloribus nisi velit reiciendis numquam. Facere sunt eius earum atque hic rem aut ea
-                perspiciatis officia facilis sit sint eos soluta vero magnam exercitationem laudantium expedita, quibusdam sed
-                odio est quae. Eos, vero quosLorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, omnis molestias, quo
-                quibusdam maiores harum nulla doloribus nisi velit reiciendis numquam. Facere sunt eius earum atque hic rem aut
-                ea perspiciatis officia facilis sit sint eos soluta vero magnam exercitationem laudantium expedita, quibusdam
-                sed odio est quae. Eos, vero quos.</dd>
+            <dd class="container mt-3" th:text="${book.description}"></dd>
         </div>
     </div>
 </div>

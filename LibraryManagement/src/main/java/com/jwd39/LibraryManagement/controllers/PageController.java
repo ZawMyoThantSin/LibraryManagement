@@ -21,13 +21,7 @@ public class PageController {
         model.addAttribute("title","Login");
         return "user/userLogin";
     }
-    @GetMapping("/showbooks")
-    public String showAllBooks(Model model){
-        List<BookDetails> books = bookService.getAll();
 
-        model.addAttribute("books",books);
-        return "user/showBooks";
-    }
 
     @GetMapping("/user/home")
     public String userHome(Model model){
