@@ -25,21 +25,14 @@ public class AdminController {
 
     @GetMapping("/admin/home")
     public String adminHome(Model model){
-
+        List<Account> users = accountService.getAll();
         List<Genre> genres = genreService.getAll();
-        List<BookDetails> raw = bookService.getAll();
-        List<BookDetails> filteredBooks = new ArrayList<>();
-        for(BookDetails books: raw){
-            if (books.getIs_delete()==1){
-                continue;
-            }else {
-                filteredBooks.add(books);
-            }
-        }
+        List<BookDetails> books = bookService.getAll();
+
 
         model.addAttribute("genres",genres);
-        model.addAttribute("books",filteredBooks);
-        model.addAttribute("title","Admin Home");
+        model.addAttribute("books",books);
+        model.addAttribute("users",users);
 
         return"admin/adminHome";
     }
@@ -47,22 +40,17 @@ public class AdminController {
     @GetMapping("/admin/showusers")
     public String showUsers(Model model){
         List<Account> users = accountService.getAll();
+        List<BookDetails> books=bookService.getAll();
+
         model.addAttribute("users",users);
+        model.addAttribute("books",books);
         return "admin/showUsers";
     }
 
     @GetMapping("/admin/trash")
     public String showTrash(Model model){
-        List<BookDetails> raw = bookService.getAll();
-        List<BookDetails> deletedBooks = new ArrayList<>();
+        List<BookDetails> deletedBooks =bookService.getDeletedBooks() ;
 
-        for(BookDetails books: raw){
-            if (books.getIs_delete()==0){
-                continue;
-            }else {
-                deletedBooks.add(books);
-            }
-        }
         model.addAttribute("deletedBooks",deletedBooks);
         return "admin/trashPage";
     }

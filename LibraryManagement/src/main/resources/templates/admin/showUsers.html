@@ -103,16 +103,16 @@
         <div class="col-sm-10 " style="background-color: rgb(235, 244, 247);">
             <div class="d-flex justify-content-around mt-3">
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
-                    <p href="#readers" class="h3 font-weight-bold mt-2"><i class="fa-solid fa-users"></i> 1000</p>
+                    <p href="#readers" class="h3 font-weight-bold mt-2" ><i class="fa-solid fa-users" th:text="${#lists.size(users)}"> </i></p>
                     <p> Our Readers</p>
                 </div>
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
-                    <p href="#books" class="h3 font-weight-bold mt-2"><i class="fa-solid fa-book"></i> 1000</p>
+                    <p href="#books" class="h3 font-weight-bold mt-2"><i class="fa-solid fa-book" th:text="${#lists.size(books)}"> </i> </p>
                     <p> Our Books</p>
                 </div>
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
                     <p class="h3 font-weight-bold mt-2"><i class="fa-solid fa-download"></i> 1000</p>
-                    <p> Downloaders</p>
+                    <p> Authors</p>
                 </div>
             </div>
 
@@ -126,8 +126,6 @@
                         <th scope="col">Email</th>
                         <th scope="col">Role ID</th>
                         <th scope="col">Created Date</th>
-                        <th scope="col" >Details</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -137,7 +135,6 @@
                             <td th:text="*{email}"></td>
                             <td th:text="*{role_id ==1 ? 'Admin' :'User'}"></td>
                             <td th:text="*{created_date}"></td>
-                            <td class="btn btn-sm btn-danger p-2 mt-2">Delete</td>
                         </tr>
                     </tbody>
                 </table>

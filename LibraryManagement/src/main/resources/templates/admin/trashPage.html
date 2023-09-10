@@ -114,11 +114,11 @@
                         <td th:text="${books.bookName}"></td>
                         <td th:text="${books.authorName}"></td>
                         <td th:text="${books.genreName}"></td>
-                        <td><img th:src="@{/uploads/{bookname}/{imagename} (bookname=${books.bookName},imagename=${books.imageName})}" width="50px" alt="..."></td>
+                        <td><img th:src="@{/uploads/{imagename} (imagename=${books.imageName})}" width="50px" alt="..."></td>
                         <td th:text="${books.created_date}"></td>
                         <td th:text="${books.updated_date}"></td>
-                        <td class="btn btn-sm btn-success p-2 mt-2" ><a th:href="@{/restore/{book_id} (book_id=${books.bookId}) } ">Restore</a></td>
-                        <td class="btn btn-sm btn-danger p-2 mt-2" ><a th:href="@{/book/delete/{book_id} (book_id=${books.bookId}) } ">Delete</a></td>
+                        <td class="btn btn-sm btn-success p-2 mt-2" ><a th:href="@{/restore/{book_id} (book_id=${books.bookId}) } "><i class="fa-solid fa-arrow-rotate-right text-white"></i></a></td>
+                        <td class="btn btn-sm btn-danger p-2 mt-2" ><a th:href="@{/book/delete/{book_id} (book_id=${books.bookId}) } "><i class="fa-solid fa-trash-can text-white"></i></a></td>
                     </tr>
 
                     </tbody>

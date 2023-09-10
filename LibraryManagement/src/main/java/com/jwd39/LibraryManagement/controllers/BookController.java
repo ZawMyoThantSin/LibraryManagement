@@ -53,7 +53,7 @@ public class BookController {
                               MultipartFile coverImage,MultipartFile bookFile ){
         String imageName = coverImage.getOriginalFilename();
         String bookFileName = bookFile.getOriginalFilename();
-        Path bookDirectory = Paths.get("src/main/resources/static/uploads/", bookName);
+        Path bookDirectory = Paths.get("src/main/resources/static/uploads/");
         try {
             Files.createDirectories(bookDirectory);
 
