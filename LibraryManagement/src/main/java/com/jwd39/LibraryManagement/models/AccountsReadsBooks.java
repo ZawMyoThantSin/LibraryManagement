@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class AccountsReadsBooks {
 
-    private int account_id,book_id;
+    private int account_id,book_id,rate,user_id;
     private Date created_date,updated_date;
+    private String author_name, book_name;
 
     public AccountsReadsBooks() {
     }
@@ -52,5 +53,37 @@ public class AccountsReadsBooks {
 
     public void setUpdated_date(Date updated_date) {
         this.updated_date = updated_date;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public String getBook_name() {
+        return book_name;
+    }
+
+    public void setBook_name(String book_name) {
+        this.book_name = book_name;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }

@@ -1,7 +1,9 @@
 package com.jwd39.LibraryManagement.controllers;
 
 import com.jwd39.LibraryManagement.helpers.SHA_256Helper;
+import com.jwd39.LibraryManagement.impls.BookRecent;
 import com.jwd39.LibraryManagement.models.Account;
+import com.jwd39.LibraryManagement.models.AccountsReadsBooks;
 import com.jwd39.LibraryManagement.services.AccountService;
 import com.jwd39.LibraryManagement.services.BookService;
 import jakarta.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -67,6 +71,14 @@ public class UserController {
                 }
             }
         }
+    }
+
+    @GetMapping("/user/recent")
+    public String BookRecent(Model model){
+        BookRecent recent = new BookRecent();
+        List<AccountsReadsBooks> recents = recent.getRecentList(2);
+        model.addAttribute("recents",recents);
+        return "user/userRecent";
     }
 
 }
