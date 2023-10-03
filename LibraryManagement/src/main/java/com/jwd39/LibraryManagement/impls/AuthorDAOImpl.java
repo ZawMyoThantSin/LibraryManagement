@@ -84,6 +84,16 @@ public class AuthorDAOImpl implements AuthorDAO {
 
     @Override
     public int delete(int id) {
-        return 0;
+        connection = DBHelper.getInstance().getCon();
+        int status =0;
+        String query="DELETE FROM authors WHERE author_id=?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,id);
+            status=statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 }

@@ -162,6 +162,116 @@
     .socialIcons .icons:hover{
         color: #bfc279;
     }
+    #footer {
+        padding: 0 0 30px 0;
+        color: #d0d0d0;
+        font-size: 12px;
+        background: #111111;
+    }
+
+    #footer .footer-top {
+        padding: 60px 0 30px;
+        background: #a9a9a947;
+        color: #fff;
+    }
+
+    #footer .footer-top .footer-contact h5 {
+        color: #ec7532;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    #footer .footer-top .footer-contact h5 {
+        font-size: 19px;
+        margin: 0 0 30px 0;
+        padding: 2px 0 2px 0;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    #footer .footer-top .footer-contact p {
+        font-size: 14px;
+        margin: 0;
+        line-height: 1;
+        font-weight: 700;
+        color: white;
+    }
+
+    #footer .footer-top h5 {
+        font-size: 14px;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 12px;
+    }
+
+    #footer .footer-top .footer-links {
+        margin-bottom: 30px;
+    }
+
+    #footer .footer-top .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #footer .footer-top .footer-links ul li {
+        padding-right: 2px;
+        color: #ec7532;
+        font-size: 15px;
+        line-height: 1;
+    }
+
+    #footer .footer-top .footer-links ul li {
+        padding-right: 10px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    #footer .footer-top .footer-links ul li:first-child {
+        padding-top: 0;
+    }
+
+    #footer .footer-top .footer-links ul li a {
+        color: white;
+        transition: 0.3s ease;
+        display: inline-block;
+        line-height: 2;
+    }
+
+    #footer .footer-top .footer-links ul li a:hover {
+        text-decoration: none;
+        color: #ec7532;
+    }
+
+    #footer .footer-top .socail-links a {
+        font-size: 18px;
+        display: inline-block;
+        background: #373737;
+        color: #fff;
+        line-height: 1;
+        padding: 8px 0;
+        padding-right: 4px;
+        border-radius: 50px;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s ease;
+    }
+
+    #footer .footer-top .socail-links a:hover {
+        background: #ec7532;
+        color: white;
+        text-decoration: none;
+    }
+
+    #footer .copyright {
+        text-align: center;
+        float: left;
+    }
+
+    #footer .credits {
+        float: right;
+        text-align: center;
+    }
 
 </style>
 <body>
@@ -185,17 +295,9 @@
                     <li class="nav-item">
                         <a class="nav-link  text-white" href="#contactUs">Contact Us</a>
                     </li>
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-
-                        </div>
-                        <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="text-warning ml-3"> &#9776;</span>
-
-                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/user/login}" th:text="${!session.isEmpty() ? 'Logout': 'Login'}"></a>
+                    </li>
                 </ul>
 
             </div>
@@ -219,61 +321,87 @@
             </div>
             <!-- home 4 books -->
             <div class="p-4 d-flex justify-content-around">
-                <img src="/images/Himg1.jpg" class="shadow-lg m-4 " alt="" width="200px" height="270px">
-                <img src="/images/Himg2.png" class="shadow-lg m-4" alt="" width="200px" height="270px">
+<!--                <img src="/images/Himg1.jpg" class="shadow-lg m-4 " alt="" width="200px" height="270px">-->
+<!--                <img src="/images/Himg2.png" class="shadow-lg m-4" alt="" width="200px" height="270px">-->
             </div>
         </div>
     </div>
-    <div class="menuIcon mt-3">
+<!--    <div class="menuIcon mt-2">-->
 
         <!--side bar-->
-        <div id="mySidenav" class="sidenav shadow">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" class="text-dark h5"> <i class="fa-solid fa-house "></i> All</a>
-            <a href="#newReleased"> <i class="fa-solid fa-book"></i> Latest Books List</a>
-            <a href="#mostReadBooks"> <i class="fa-solid fa-book-open-reader"></i> Most Rated Books List</a>
-            <a href="#"> <i class="fa-solid fa-heart"></i> Favourite</a>
-            <a href="#"> <i class="fa-solid fa-download"></i> Downloaded Books List</a>
-            <br>
-            <p class="text-dark h5 ml-4"><i class="fa-solid fa-book-open"></i> Genres</p>
-            <a href="#business"> <i class="fa-solid fa-business-time"></i> Business</a>
-            <a href="#comedy"><i class="fa-regular fa-face-laugh-squint"></i> Comedy</a>
-            <a href="#education"><i class="fa-solid fa-school"></i> Education</a>
-            <a href="#ghost"><i class="fa-solid fa-ghost"></i> Ghost</a>
-            <a href="#health"><i class="fa-solid fa-user-doctor"></i> Health</a>
-            <a href="#travel"><i class="fa-solid fa-plane-departure"></i> Travel</a>
-            <a href="#story"><i class="fa-solid fa-person-breastfeeding"></i> Story</a>
-            <a href="#motivation"><i class="fa-solid fa-person-arrow-up-from-line"></i> Motivation</a>
+<!--        <div id="mySidenav" class="sidenav shadow">-->
+<!--            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
+<!--            <a href="#" class="text-dark h5"> <i class="fa-solid fa-house "></i> All</a>-->
+<!--            <a href="#newReleased"> <i class="fa-solid fa-book"></i> Latest Books List</a>-->
+<!--            <a href="#mostReadBooks"> <i class="fa-solid fa-book-open-reader"></i> Most Rated Books List</a>-->
+<!--            <a href="#"> <i class="fa-solid fa-heart"></i> Favourite</a>-->
+<!--            <a href="#"> <i class="fa-solid fa-download"></i> Downloaded Books List</a>-->
+<!--            <br>-->
+<!--            <p class="text-dark h5 ml-4"><i class="fa-solid fa-book-open"></i> Genres</p>-->
+<!--            <a href="#business"> <i class="fa-solid fa-business-time"></i> Business</a>-->
+<!--            <a href="#comedy"><i class="fa-regular fa-face-laugh-squint"></i> Comedy</a>-->
+<!--            <a href="#education"><i class="fa-solid fa-school"></i> Education</a>-->
+<!--            <a href="#ghost"><i class="fa-solid fa-ghost"></i> Ghost</a>-->
+<!--            <a href="#health"><i class="fa-solid fa-user-doctor"></i> Health</a>-->
+<!--            <a href="#travel"><i class="fa-solid fa-plane-departure"></i> Travel</a>-->
+<!--            <a href="#story"><i class="fa-solid fa-person-breastfeeding"></i> Story</a>-->
+<!--            <a href="#motivation"><i class="fa-solid fa-person-arrow-up-from-line"></i> Motivation</a>-->
 
-        </div>
+<!--        </div>-->
     </div>
-    <div class="container mt-5 shadow" style="background-color: rgb(255, 255, 255);">
-        <h3 class="text-center pt-2" id="about">About Us</h3>
+    <!-- Footer -->
+    <footer id="footer" >
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <a class="navbar-brand">
+                            <img src="/images/book.png" width="50" height="50">
+                            <span class="text-warning">Web</span> <span class="text-white"><strong>Books</strong></span>
+                        </a>
+                        <br><br>
+                        <p>
+                            Choose Your Favourite books <br><br>
+                            Read <br><br>
+                            Download <br><br>
+                        </p>
+                        <strong>Phone: <span>+95767049698</span></strong><br>
+                        <strong>Email: <span>info@moviestar.com</span></strong>
+                    </div>
 
-        <div class="about row mt-4 p-3">
-            <div class="leftImg col-sm-5">
-                <img src="/images/footer.jpg" alt="" class="w-75 h-75 shadow rounded">
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h5>Useful Links</h5>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i><a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i><a href="#about">About</a></li>
+                            <li><i class="bx bx-chevron-right"></i><a href="#contactUs">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h5>Our Services</h5>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, molestias!</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h5>Our Social Network</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, ducimus.</p>
+                        <div class="socail-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-google-plus"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="rightText col-sm-5">
-                <p class="pt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam voluptates,
-                    <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae molestiae corporis recusandae atque ea pariatur debitis porro possimus. Iusto rerum quia, explicabo itaque veniam id dicta ex amet possimus qui quisquam blanditiis similique impedit necessitatibus consectetu  Iusto rerum quia, explicabo itaque veniam id dicta ex amet porro possimus. Iusto rerum quia, explicabo itaque veniam id dicta ex amet possimus qui quisquam blanditiis similiq possimus qui quisquam blanditiis similique impedit necessitatibus consectetu</p>
+        </div>
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span> Web Books</span></strong>. All Rights Reserved
             </div>
         </div>
-    </div>
-
-    <div class="container mt-4 shadow" style="background-color: rgb(255, 255, 255);">
-        <h3  class="text-center pt-2" id="contactUs">Contact us</h3>
-        <div class="icons socialIcons d-flex justify-content-center">
-            <i class="icons h2 fa-brands fa-facebook mr-2"></i>
-            <i class="icons h2 fa-brands fa-square-instagram mr-2"></i>
-            <i class="icons h2 fa-brands fa-line mr-2"></i>
-            <i class="icons h2 fa-brands fa-square-x-twitter mr-2"></i>
-        </div>
-        <h5 class="text-center p-2">Phone number: +959 123 456 78</h4>
-    </div>
-
-    <footer class="text-center mt-4 mb-4"><small>copy@Right by 2023 WEB BOOKS</small></footer>
+    </footer>
 </div>
 
 

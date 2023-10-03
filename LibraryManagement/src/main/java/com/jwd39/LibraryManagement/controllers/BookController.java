@@ -1,11 +1,14 @@
 package com.jwd39.LibraryManagement.controllers;
 
+import com.jwd39.LibraryManagement.models.Account;
 import com.jwd39.LibraryManagement.models.Author;
 import com.jwd39.LibraryManagement.models.BookDetails;
 import com.jwd39.LibraryManagement.models.Genre;
 import com.jwd39.LibraryManagement.services.AuthorService;
 import com.jwd39.LibraryManagement.services.BookService;
 import com.jwd39.LibraryManagement.services.GenreService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,6 @@ import java.util.List;
 
 @Controller
 public class BookController {
-
     @Autowired
     private BookService bookService;
     @Autowired
@@ -73,25 +75,29 @@ public class BookController {
     }
 
     @GetMapping("/book/details/{book_id}")
-    public String detailPage(@PathVariable int book_id,Model model){
+    public String detailPage(@PathVariable int book_id, Model model, HttpServletRequest request){
         BookDetails book = bookService.findById(book_id);
-
-        model.addAttribute("book", book);
-        return "user/bookDetails";
+        HttpSession session = request.getSession();
+        Account account =(Account) session.getAttribute("account");
+        if (account!=null){
+            model.addAttribute("book", book);
+            return "user/bookDetails";
+        }
+        model.addAttribute("message","You Must Login First");
+        return "user/userLogin";
     }
 
     @GetMapping("/book/delete/{book_id}")
     public String deleteBook(@PathVariable int book_id) {
         BookDetails book = bookService.findById(book_id);
         if (book != null) {
-            Path bookDirectory = Paths.get("src/main/resources/static/uploads/", book.getBookName());
+            Path bookDirectory = Paths.get("src/main/resources/static/uploads/");
             try {
 
                 Files.deleteIfExists(bookDirectory.resolve(book.getImageName()));
                 Files.deleteIfExists(bookDirectory.resolve(book.getFileName()));
                 bookService.delete(book_id);
-
-                return "redirect:/admin/home";
+                return "redirect:/admin/trash";
             } catch (IOException e) {
                 e.printStackTrace();
                 return "errorPage";

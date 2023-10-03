@@ -11,15 +11,13 @@ import java.util.List;
 
 @Controller
 public class PageController {
-    @Autowired
-    private BookService bookService;
 
 
     @GetMapping("/")
     public String home(Model model){
 
         model.addAttribute("title","Login");
-        return "user/userLogin";
+        return "user/home";
     }
 
 
@@ -28,13 +26,6 @@ public class PageController {
 
         model.addAttribute("title","Home");
         return "user/home";
-    }
-
-    @GetMapping("/user/login")
-    public String userLogin(Model model){
-
-        model.addAttribute("title","Login");
-        return "user/userLogin";
     }
 
 

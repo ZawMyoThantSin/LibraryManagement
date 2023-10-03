@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{master::header}">
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/get-css-data@2.1.0/dist/get-css-data.min.js"></script>
+    <title th:text="${title}"></title>
+
+</head>
+<body class="login-body">
+<div class="login-page">
+    <div class="form">
+        <div class="login">
+            <div class="login-header">
+                <h2>Welcome!</h2>
+            </div>
+        </div>
+        <form class="login-form" action="/user/login" method="post" >
+            <input type="text" placeholder="Email" name="email" required/>
+            <input type="password" placeholder="Password" name="password" required/>
+            <p class="text-danger" style="font-size: 14px;" th:text="${message}"></p>
+            <button type="submit">login</button>
+            <p class="message">Not registered? <a href="/user/registration">Create an account</a></p>
+        </form>
+    </div>
+</div>
+
+
+<div th:replace="~{master::footer}"></div>
+
+</body>
+</html>

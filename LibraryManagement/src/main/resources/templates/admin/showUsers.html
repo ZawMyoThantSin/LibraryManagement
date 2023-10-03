@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
-    <title>Document</title>
+    <title>Users</title>
     <style>
         * {
             font-family: 'Literata', serif;
@@ -71,15 +71,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Contact Us</a>
                     </li>
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-
-                        </div>
-                    </form>
+                    <li class="nav-item" >
+                        <a class="nav-link text-dark" th:href="@{/user/login}" th:text="${!session.isEmpty() ? 'Logout': 'Login'}"></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -91,11 +85,12 @@
         <div class="col-sm-2 sidenav">
             <div id="mySidenav" class="ss shadow" style="background-color: rgb(233, 241, 246); height: 150vh;">
                 <div class="pt-4">
-                    <h4 class="pt-3 ml-5 mb-4"><i class="fa-solid fa-image-portrait"></i> William</h4>
+                    <h4 class="pt-3 ml-5 mb-4"><i class="fa-solid fa-image-portrait"></i>Admin</h4>
                     <a th:href="@{/admin/home}" > <i class="fa-solid fa-house  "></i> Home</a>
                     <a th:href="@{/admin/showusers}"> <i class="fa-solid fa-users"></i> Our Readers</a>
                     <a th:href="@{/admin/trash}"> <i class="fa-solid fa-trash"></i> Trash</a>
                     <a th:href="@{/create/author}"> <i class="fa-solid fa-pencil"></i> Authors</a>
+                    <a th:href="@{/create/genre}"> <i class="fa-solid fa-pencil"></i> Genres</a>
                     <a th:href="@{/create/book}"> <i class="fa-solid fa-book"></i> Create Book</a>
                 </div>
             </div>
@@ -103,15 +98,15 @@
         <div class="col-sm-10 " style="background-color: rgb(235, 244, 247);">
             <div class="d-flex justify-content-around mt-3">
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
-                    <p href="#readers" class="h3 font-weight-bold mt-2" ><i class="fa-solid fa-users" th:text="${#lists.size(users)}"> </i></p>
+                    <p class="h3 font-weight-bold mt-2 "  ><i class="fa-solid fa-users"><g class="ml-2" th:text="${#lists.size(users)}"></g> </i></p>
                     <p> Our Readers</p>
                 </div>
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
-                    <p href="#books" class="h3 font-weight-bold mt-2"><i class="fa-solid fa-book" th:text="${#lists.size(books)}"> </i> </p>
+                    <p href="#books" class="h3 font-weight-bold mt-2"><i class="fa-solid fa-book"><g class="ml-2" th:text="${#lists.size(books)}"></g> </i></p>
                     <p> Our Books</p>
                 </div>
                 <div style="background-color: rgb(206, 236, 241);" class="p-2 shadow-sm rounded text-center w-25">
-                    <p class="h3 font-weight-bold mt-2"><i class="fa-solid fa-download"></i> 1000</p>
+                    <p class="h3 font-weight-bold mt-2"><i class="fa-solid fa-download"></i><g class="ml-2" th:text="${#lists.size(authors)}"></g></p>
                     <p> Authors</p>
                 </div>
             </div>

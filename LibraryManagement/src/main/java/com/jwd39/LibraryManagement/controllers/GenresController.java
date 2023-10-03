@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,23 +19,31 @@ public class GenresController {
     @Autowired
     private GenreService genreService;
 
-    @GetMapping("/genres")
+    @GetMapping("/create/genre")
     public String createGenres(Model model){
-        List<Genre> genres=new ArrayList<>();
+        List<Genre> genres = genreService.getAll();
         model.addAttribute("genres",genres);
-        return "admin/adminHome.html";
+        return "admin/genrePage";
     }
 
-    @PostMapping("/genres")
-    public String createGenres(@RequestParam String genreName) {
-        if (genreName != null) {
-            Genre genre = new Genre(genreName);
+    @PostMapping("/create/genre")
+    public String createGenres(@RequestParam String name) {
+        if (name != null) {
+            Genre genre = new Genre(name);
             int status = genreService.save(genre);
             if (status == 1)
-                return "admin/adminHome.html";
+                return "redirect:/create/genre";
         }
-        return "admin/adminHome.html";
+        return "redirect:/create/genre";
     }
 
+    @GetMapping("/genre/delete/{genre_id}")
+    public String delete(@PathVariable int genre_id){
+        if (genre_id!=0){
+            genreService.delete(genre_id);
+            return "redirect:/create/genre";
+        }
+        return "redirect:/create/genre";
+    }
 
 }

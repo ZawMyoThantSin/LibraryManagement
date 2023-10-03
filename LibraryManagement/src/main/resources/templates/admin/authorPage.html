@@ -71,6 +71,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">Contact Us</a>
                     </li>
+                    <li class="nav-item" >
+                        <a class="nav-link text-dark" th:href="@{/user/login}" th:text="${!session.isEmpty() ? 'Logout': 'Login'}"></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -82,11 +85,12 @@
         <div class="col-sm-2 sidenav">
             <div id="mySidenav" class="ss shadow" style="background-color: rgb(233, 241, 246); height: 150vh;">
                 <div class="pt-4">
-                    <h4 class="pt-3 ml-5 mb-4"><i class="fa-solid fa-image-portrait"></i> William</h4>
+                    <h4 class="pt-3 ml-5 mb-4"><i class="fa-solid fa-image-portrait"></i>Admin</h4>
                     <a th:href="@{/admin/home}" > <i class="fa-solid fa-house  "></i> Home</a>
                     <a th:href="@{/admin/showusers}"> <i class="fa-solid fa-users"></i> Our Readers</a>
                     <a th:href="@{/admin/trash}"> <i class="fa-solid fa-trash"></i> Trash</a>
                     <a th:href="@{/create/author}"> <i class="fa-solid fa-pencil"></i> Authors</a>
+                    <a th:href="@{/create/genre}"> <i class="fa-solid fa-pencil"></i> Genres</a>
                     <a th:href="@{/create/book}"> <i class="fa-solid fa-book"></i> Create Book</a>
                 </div>
             </div>
@@ -108,11 +112,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="authors : ${authors}" th:object="${authors}">
-                                <td th:text="*{id}"></td>
+                            <tr th:each="authors,counter : ${authors}" th:object="${authors}">
+                                <td th:text="${counter.index +1}"></td>
                                 <td th:text="*{author_name}"></td>
-                                <td class="btn btn-sm btn-warning p-2 mt-2"><i class="fa-solid fa-pen-to-square"></i></td>
-                                <td class="btn btn-sm btn-danger p-2 mt-2"><i class="fa-solid fa-trash"></i></td>
+                                <td class="btn btn-sm btn-danger p-2 mt-2 "><a th:href="@{/author/delete/{author_id} (author_id=${authors.id})}"><i class="fa-solid fa-trash text-white"></i></a></td>
                             </tr>
                             </tbody>
                         </table>
